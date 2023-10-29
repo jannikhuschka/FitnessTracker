@@ -20,8 +20,10 @@ final class FitnessStopwatch: ObservableObject {
 	@Published var completed = false
 	@Published var liveActivityUpdate: Bool = false
 	
+	@Published var currentSupersetDef: ExerciseDefinition?
 	@Published var currentExDef: ExerciseDefinition = .empty
 	@Published var currentSetDef: SetDefinition = .init(repCount: 15, weightStage: 5, pause: .init())
+	@Published var currentSupersetExercise: Exercise?
 	@Published var currentExercise: Exercise = .empty
 	@Published var upcomingExercises: [ExerciseDefinition] = []
 	@Published var postponedExercises: [Exercise] = []
@@ -67,8 +69,11 @@ final class FitnessStopwatch: ObservableObject {
 		upcomingExercises = training.exercises
 		
 		lastSetCompleteDate = Date()
-		currentExDef = upcomingExercises.first!
+		fetchDefinitions()
+		
 		currentExercise = .fromDefinition(definition: currentExDef)
+		repsToBeat = currentSetDef.repCount
+		currentWeight = currentSetDef.weight(possibleWeights: completeOverrideChain.possibleWeights)
 //		repsToBeat = lastSession?.exercises.fromDefinition(currentExDef)?.sets[currentExercise.sets.count].reps ?? currentExDef.target.repCount
 //		currentWeight = lastSession?.exercises.fromDefinition(currentExDef)?.sets[currentExercise.sets.count].weight ?? currentExDef.targetWeight
 		lastSetCompleteDate = Date()
@@ -106,8 +111,11 @@ final class FitnessStopwatch: ObservableObject {
 		completed = false
 		
 		currentExDef = .empty
+		currentSupersetDef = nil
 		currentExercise = .empty
+		currentSupersetExercise = nil
 		upcomingExercises = []
+		postponedExercises = []
 		completedSets = 0
 		totalSets = 0
 		totalMovedWeight = 0
@@ -131,23 +139,18 @@ final class FitnessStopwatch: ObservableObject {
 		timer = nil
 	}
 	
-	func increaseWeight() {
-		withAnimation {
-			currentWeight += currentExDef.overrides?.possibleWeights?.weightStep ?? training.defaults.possibleWeights.weightStep
-		}
-	}
-	
-	func decreaseWeight() {
-		withAnimation {
-			currentWeight -= currentExDef.overrides?.possibleWeights?.weightStep ?? training.defaults.possibleWeights.weightStep
-		}
-	}
-	
 	func submitRepetitions(repetitions: Int) {
 		if(completed) { return }
 		
 		withAnimation {
 			currentExercise.sets.append(.init(reps: repetitions, weight: currentWeight))
+			if currentSupersetExercise != nil {
+				if let i = currentSupersetExercise!.subExercises.firstIndex(where: { $0.name == currentExercise.name }) {
+					currentSupersetExercise!.subExercises[i] = currentExercise
+				} else {
+					currentSupersetExercise!.subExercises.append(currentExercise)
+				}
+			}
 			totalMovedWeight += Double(repetitions) * currentWeight
 			nextSet()
 			update()
@@ -169,24 +172,65 @@ final class FitnessStopwatch: ObservableObject {
 			self.endOfPauseDate = Date.distantFuture
 			self.pausePhase = false
 		}
-		if(currentExercise.sets.count == Int(currentExDef.setCount)) {
+		
+		if(currentSupersetDef != nil && currentSupersetExercise != nil) {
+			nextSupersetSet()
+		}
+		
+		if(currentSupersetDef?.isCompletedBy(currentSupersetExercise, overrideChain: ExerciseOverrideChain(root: training.defaults, overrides: [currentSupersetDef?.overrides])) ?? currentExDef.isCompletedBy(currentExercise, overrideChain: completeOverrideChain)) {
 			nextExercise()
 		}
 		
+		currentSetDef = currentExDef.setDefinition(number: currentExercise.sets.count, overrideChain: completeOverrideChain)
+		
 		if(completed) { return }
-//		repsToBeat = (lastSession?.isCompatibleTo(currentExDef) ?? false) ? lastSession!.exercises.fromDefinition(currentExDef)!.sets[currentExercise.sets.count].reps : currentExDef.target.repCount
-//		currentWeight = (lastSession?.isCompatibleToAndDoesntDivertFrom(currentExDef) ?? false) ? lastSession!.exercises.fromDefinition(currentExDef)!.sets[currentExercise.sets.count].weight : currentExDef.targetWeight
+		repsToBeat = currentSetDef.repCount
+		currentWeight = currentSetDef.weight(possibleWeights: completeOverrideChain.possibleWeights)
+	}
+	
+	func nextSupersetSet() {
+		let notCompleted = currentSupersetDef!.supersetMembers.notCompletedBy(currentSupersetExercise!.subExercises, overrideChain: supersetOverrideChain)
+		currentExDef = notCompleted.first ?? currentExDef
+		for exDef in currentSupersetDef!.supersetMembers {
+			guard let ex = currentSupersetExercise!.subExercises.first(where: { $0.name == exDef.name }) else { currentExDef = exDef; break }
+			if(!exDef.isCompletedBy(ex, overrideChain: .init(root: training.defaults, overrides: [currentSupersetDef?.overrides, exDef.overrides])) && ex.sets.count < currentExercise.sets.count) { currentExDef = exDef; break }
+		}
+		currentExercise = currentSupersetExercise!.subExercises.first(where: { $0.name == currentExDef.name }) ?? .fromDefinition(definition: currentExDef)
 	}
 	
 	func nextExercise() {
-		session.exercises.append(currentExercise)
+		session.exercises.append(currentSupersetExercise ?? currentExercise)
+		currentSupersetDef = nil
+		currentSupersetExercise = nil
 		upcomingExercises.remove(at: 0)
 		if(upcomingExercises.isEmpty) {
 			finishSession()
-			return()
+			return
 		}
+		fetchDefinitions()
+	}
+	
+	func fetchDefinitions() {
 		currentExDef = upcomingExercises.first!
+		if(currentExDef.isSuperset) {
+			currentSupersetDef = currentExDef
+//			currentExDef = currentSupersetDef!.supersetMembers.first!
+		}
 		getCurrentExercise()
+	}
+	
+	func getCurrentExercise() {
+		if let i = postponedExercises.firstIndex(where: { $0.name == currentSupersetDef?.name ?? currentExDef.name }) {
+			currentExercise = postponedExercises.remove(at: i)
+		} else {
+			currentExercise = .fromDefinition(definition: currentSupersetDef ?? currentExDef)
+		}
+		
+		if currentExercise.isSuperset || currentSupersetDef != nil {
+			currentSupersetExercise = currentExercise
+			currentExercise = currentSupersetExercise!.subExercises.max(by: { $0.sets.count < $1.sets.count }) ?? currentExercise
+			nextSupersetSet()
+		}
 	}
 	
 	func finishSession() {
@@ -197,16 +241,26 @@ final class FitnessStopwatch: ObservableObject {
 		stopActivity()
 	}
 	
-	func lengthenPause() {
-		if(!pausePhase || pauseMode == .infinitePause) { return }
-		endOfPauseDate += 30
-		update()
+	func swapExercise(exerciseName: String) {
+		upcomingExercises.swapAt(0, upcomingExercises.firstIndex(where: { $0.name == exerciseName })!)
+		saveCurrentExerciseAndLoadNext()
 	}
 	
-	func shortenPause() {
-		if(!pausePhase || pauseMode == .infinitePause) { return }
-		endOfPauseDate -= min(30, endOfPauseDate.timeIntervalSince1970 - Date().timeIntervalSince1970)
-		update()
+	func setUpcomingExercises(_ upcoming: [ExerciseDefinition]) {
+		upcomingExercises = upcoming
+		if(upcoming.first?.name != currentExDef.name) {
+			saveCurrentExerciseAndLoadNext()
+		}
+	}
+	
+	func saveCurrentExerciseAndLoadNext() {
+		if(!(currentSupersetExercise?.subExercises.isEmpty ?? currentExercise.sets.isEmpty)) {
+			postponedExercises.append(currentSupersetExercise ?? currentExercise)
+			print(postponedExercises.count)
+		}
+		currentSupersetDef = nil
+		currentSupersetExercise = nil
+		fetchDefinitions()
 	}
 	
 	nonisolated private func update() {
@@ -235,34 +289,48 @@ final class FitnessStopwatch: ObservableObject {
 		}
 	}
 	
+	var completeOverrideChain: ExerciseOverrideChain {
+		.init(root: training.defaults, overrides: [currentSupersetDef?.overrides, currentExDef.overrides])
+	}
+	
+	var supersetOverrideChain: ExerciseOverrideChain {
+		.init(root: training.defaults, overrides: [currentSupersetDef?.overrides])
+	}
+	
 	var currentContentState: FitnessWidgetAttributes.ContentState {
-		.init(stopwatchPaused: !running, pausePhase: pausePhase, time: ElapsedTime(elapsedSeconds: displayTime, decimalDigits: 0).hoursTilSeconds, exercise: currentExercise, exDef: currentExDef, setDef: currentSetDef, nextDefinitions: Array(upcomingExercises.suffix(from: min(1, upcomingExercises.count))), upcomingOffset: liveActivityUpcomingOffset, repsToBeat: repsToBeat, currentWeight: currentWeight, completedSets: completedSets)
+		.init(stopwatchPaused: !running, pausePhase: pausePhase, time: ElapsedTime(elapsedSeconds: displayTime, decimalDigits: 0).hoursTilSeconds, exercise: currentExercise, exDef: currentExDef, setDef: currentSetDef, nextDefinitions: Array(upcomingExercises.suffix(from: min(1, upcomingExercises.count))), overrideChain: completeOverrideChain, upcomingOffset: liveActivityUpcomingOffset, repsToBeat: repsToBeat, currentWeight: currentWeight, completedSets: completedSets)
 	}
 	
-	func getCurrentExercise() {
-		if(postponedExercises.contains(where: { $0.name == currentExDef.name })) {
-			currentExercise = postponedExercises.remove(at: postponedExercises.firstIndex(where: { $0.name == currentExDef.name})!)
-		} else {
-			currentExercise = .fromDefinition(definition: currentExDef)
+	func increaseWeight() {
+		withAnimation {
+			currentWeight += currentExDef.overrides?.possibleWeights?.weightStep ?? training.defaults.possibleWeights.weightStep
 		}
 	}
 	
-	func swapExercise(exerciseName: String) {
-		if(!currentExercise.sets.isEmpty) {
-			postponedExercises.append(currentExercise)
+	func decreaseWeight() {
+		withAnimation {
+			currentWeight -= currentExDef.overrides?.possibleWeights?.weightStep ?? training.defaults.possibleWeights.weightStep
 		}
-		upcomingExercises.swapAt(0, upcomingExercises.firstIndex(where: { $0.name == exerciseName })!)
-		currentExDef = upcomingExercises.first!
-		getCurrentExercise()
-		print(currentExercise.name)
 	}
 	
-	func setUpcomingExercises(_ upcoming: [ExerciseDefinition]) {
-		upcomingExercises = upcoming
-		if(upcoming.first?.name != currentExDef.name) {
-			currentExDef = upcoming.first ?? .empty
-			getCurrentExercise()
-		}
+	func lengthenPause() {
+		if(!pausePhase || pauseMode == .infinitePause) { return }
+		endOfPauseDate += 30
+		update()
+	}
+	
+	func shortenPause() {
+		if(!pausePhase || pauseMode == .infinitePause) { return }
+		endOfPauseDate -= min(30, endOfPauseDate.timeIntervalSince1970 - Date().timeIntervalSince1970)
+		update()
+	}
+	
+	func increaseLiveActivityUpcomingOffset(_ inc: Int) {
+		liveActivityUpcomingOffset += inc
+	}
+	
+	func decreaseLiveActivityUpcomingOffset(_ dec: Int) {
+		liveActivityUpcomingOffset -= dec
 	}
 	
 	func startActivity() {
@@ -287,14 +355,6 @@ final class FitnessStopwatch: ObservableObject {
 		Task {
 			await liveActivity?.end(.init(state: currentContentState, staleDate: .distantFuture), dismissalPolicy: .immediate)
 		}
-	}
-	
-	func increaseLiveActivityUpcomingOffset(_ inc: Int) {
-		liveActivityUpcomingOffset += inc
-	}
-	
-	func decreaseLiveActivityUpcomingOffset(_ dec: Int) {
-		liveActivityUpcomingOffset -= dec
 	}
 }
 

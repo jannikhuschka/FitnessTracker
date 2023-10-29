@@ -22,11 +22,16 @@ struct OptionalWeightStagePicker: View {
 					})
 				}
 		} else {
-			Button("Add Weight Stage Override", systemImage: "plus.circle", action: {
-				withAnimation {
-					weightStage = overrideChain.setDefinition.weightStage
-				}
-			})
+			HStack {
+				Button("Weight Stage", systemImage: "plus.circle", action: {
+					withAnimation {
+						weightStage = overrideChain.setDefinition.weightStage
+					}
+				})
+				Spacer()
+				Text("\(overrideChain.levelFor(.weightStage)): \(overrideChain.setDefinition.weight(possibleWeights: overrideChain.possibleWeights).formatted(.number))kg")
+					.foregroundStyle(.gray)
+			}
 		}
     }
 }

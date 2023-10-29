@@ -8,7 +8,7 @@ struct ExerciseParamsOverrideEditView: View {
 	var body: some View {
 		Form {
 			Section(header: Text("Possible Weights")) {
-				OptionalPossibleWeightsEditView(possibleWeights: $override.possibleWeights)
+				OptionalPossibleWeightsEditView(possibleWeights: $override.possibleWeights, overrideChain: overrideChain)
 			}
 			
 			Section(header: Text("Set Targets")) {
@@ -21,8 +21,13 @@ struct ExerciseParamsOverrideEditView: View {
 								}
 							}
 					} else {
-						Button("Add Set Count Override", systemImage: "plus.circle") {
-							override.setCount = overrideChain.setCount
+						HStack {
+							Button("Sets", systemImage: "plus.circle") {
+								override.setCount = overrideChain.setCount
+							}
+							Spacer()
+							Text("\(overrideChain.levelFor(.setCount)): \(overrideChain.setCount)")
+								.foregroundStyle(.gray)
 						}
 					}
 				} else {

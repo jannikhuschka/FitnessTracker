@@ -71,9 +71,9 @@ struct ActiveTrainingView: View {
 				
 				if(!stopwatch.completed) {
 					HStack {
-						ValueDescriptionAbove(description: "Current Exercise", value: "\(stopwatch.currentExDef.name)", alignment: .leading, valFont: .title)
+						ValueDescriptionAbove(description: stopwatch.currentSupersetExercise?.name ?? "Current Exercise", value: "\(stopwatch.currentExDef.name)", alignment: .leading, valFont: .title)
 						Spacer()
-						ValueDescriptionAbove(description: "Leg", value: "\(stopwatch.currentExercise.sets.count + 1)/\(stopwatch.currentExDef.setCount)", alignment: .center, valFont: .title)
+						ValueDescriptionAbove(description: superSetLegs ?? "Leg", value: "\(stopwatch.currentExercise.sets.count + 1)/\(stopwatch.currentExDef.setCount(overrideChain: stopwatch.completeOverrideChain))", alignment: .center, valFont: .title)
 						Spacer()
 						ValueDescriptionAbove(description: "Weight", value: "\(stopwatch.currentWeight.formatted(.number)) kg", alignment: .trailing, valFont: .title, control1: {
 							Button(intent: DecreaseWeight()){
@@ -165,7 +165,7 @@ struct ActiveTrainingView: View {
 			.onChange(of: stopwatch.completed) { oldVal, newVal in
 				if(newVal == true) {
 					training.sessions.append(stopwatch.session)
-					updateTargets()
+//					updateTargets()
 				}
 			}
 		}
@@ -221,6 +221,11 @@ struct ActiveTrainingView: View {
 				training.exercises[i].overrides?.setDefinition.weightStage? += 1
 			}
 		}
+	}
+	
+	var superSetLegs: String? {
+		guard let currentSupersetDef = stopwatch.currentSupersetDef, let currentSupersetExercise = stopwatch.currentSupersetExercise else { return nil }
+		return "\(currentSupersetExercise.subExercises.reduce(0, { $0 + $1.sets.count }) + 1)/\(currentSupersetDef.setCount(overrideChain: stopwatch.supersetOverrideChain))"
 	}
 }
 

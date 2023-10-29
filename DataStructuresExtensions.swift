@@ -3,7 +3,7 @@ import Foundation
 extension Training {
 	public var totalSets: Int {
 		exercises.reduce(0, { result, exercise in
-			return result + exercise.setDefinitions.count
+			return result + exercise.setCount(overrideChain: .init(root: defaults, overrides: [exercise.overrides]))
 		})
 	}
 	
@@ -44,12 +44,48 @@ extension ExerciseOverrideChain {
 		}
 		return result
 	}
+	
+	func withSet(_ set: SetDefinitionOverride) -> ExerciseOverrideChain {
+		var result = ExerciseOverrideChain(root: self.root, overrides: self.overrides)
+		result.overrides.append(.init(setDefinition: set))
+		return result
+	}
 }
 
 extension ExerciseDefinition {
 	static func forTraining(training: Training, name: String, isSuperset: Bool = false) -> ExerciseDefinition {
 		let defaults = training.defaults
 		return .init(name: name, baseWeight: defaults.possibleWeights.baseWeight, weightStep: defaults.possibleWeights.weightStep, setCount: 3, repCount: defaults.setDefinition.repCount, weightStage: defaults.setDefinition.weightStage)
+	}
+	
+	func setDefinition(number: Int, overrideChain: ExerciseOverrideChain) -> SetDefinition {
+		if(isSimple || number >= setCount(overrideChain: overrideChain)) { return overrideChain.setDefinition }
+		return overrideChain.withSet(setDefinitions[number]).setDefinition
+	}
+	
+	func isCompletedBy(_ exercise: Exercise?, overrideChain: ExerciseOverrideChain) -> Bool {
+		guard let exercise else { return false }
+		if(isSimple) {
+			return setCount(overrideChain: overrideChain) <= exercise.sets.count
+		}
+		if(isSuperset) {
+			return supersetMembers.allSatisfy( { member in
+				member.isCompletedBy(exercise.subExercises.first(where: { $0.name == member.name }), overrideChain: overrideChain.with(member.overrides))
+			})
+		}
+		return setDefinitions.count <= exercise.sets.count
+	}
+}
+
+extension [ExerciseDefinition] {
+	func completedBy(_ exercises: [Exercise], overrideChain: ExerciseOverrideChain) -> [ExerciseDefinition] {
+		return self.filter({ def in
+			def.isCompletedBy(exercises.first(where: { $0.name == def.name }), overrideChain: overrideChain.with(def.overrides)) })
+	}
+	
+	func notCompletedBy(_ exercises: [Exercise], overrideChain: ExerciseOverrideChain) -> [ExerciseDefinition] {
+		return self.filter({ def in
+			!def.isCompletedBy(exercises.first(where: { $0.name == def.name }), overrideChain: overrideChain.with(def.overrides)) })
 	}
 }
 
@@ -86,10 +122,21 @@ extension Exercise {
 	
 	public func completedTarget(_ definition: ExerciseDefinition) -> Bool {
 		if (sets.indices.allSatisfy({ i in
-			sets[i].reps == definition.setDefinitions[i].repCount && sets[i].weight == definition.setDefinitions[i].weight(possibleWeights: definition.overrides?.possibleWeights ?? .init(baseWeight: 0, weightStep: 5))
+			false
+//			sets[i].reps == definition.setDefinitions[i].repCount && sets[i].weight == definition.setDefinitions[i].weight(possibleWeights: definition.overrides?.possibleWeights ?? .init(baseWeight: 0, weightStep: 5))
 		})) {
 			return true
 		}
 		return false
+	}
+}
+
+extension PauseMode {
+	var shortened: String {
+		switch(self) {
+		case .fixedPauseDuration: return "Pause"
+		case .fixedSetDuration: return "Set"
+		case .infinitePause: return "Infinite"
+		}
 	}
 }

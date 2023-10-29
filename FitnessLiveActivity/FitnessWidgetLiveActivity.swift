@@ -19,6 +19,7 @@ struct FitnessWidgetAttributes: ActivityAttributes {
 		var exDef: ExerciseDefinition = .empty
 		var setDef: SetDefinition
 		var nextDefinitions: [ExerciseDefinition] = []
+		var overrideChain: ExerciseOverrideChain = .sample
 		var upcomingOffset: Int = 0
 		var repsToBeat: Int
 		var currentWeight: Double
@@ -100,7 +101,7 @@ struct FitnessWidgetLiveActivity: Widget {
 					
 					Spacer()
 					
-					ValueDescriptionAbove(description: "Set", value: "\(context.state.exercise.sets.count + 1)/\(context.state.exDef.setCount)", alignment: .center)
+					ValueDescriptionAbove(description: "Set", value: "\(context.state.exercise.sets.count + 1)/\(context.state.exDef.setCount(overrideChain: context.state.overrideChain))", alignment: .center)
 					
 					Spacer()
 					

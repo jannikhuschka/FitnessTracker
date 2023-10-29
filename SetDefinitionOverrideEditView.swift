@@ -16,11 +16,16 @@ struct SetDefinitionOverrideEditView: View {
 						}
 					}
 			} else {
-				Button("Add Rep Override", systemImage: "plus.circle", action: {
-					withAnimation {
-						override.repCount = overrideChain.setDefinition.repCount
-					}
-				})
+				HStack {
+					Button("Repetitions", systemImage: "plus.circle", action: {
+						withAnimation {
+							override.repCount = overrideChain.setDefinition.repCount
+						}
+					})
+					Spacer()
+					Text("\(overrideChain.levelFor(.repCount)): \(overrideChain.setDefinition.repCount)")
+						.foregroundStyle(.gray)
+				}
 			}
 			
 			OptionalWeightStagePicker(weightStage: $override.weightStage, overrideChain: overrideChain)

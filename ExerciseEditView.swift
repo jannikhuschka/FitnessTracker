@@ -70,7 +70,7 @@ struct ExerciseEditView: View {
 				} else {
 					Section(header: Text("Sets")) {
 						if(exercise.isSimple) {
-							Label("\("Set".pluralize(fullOverrideChain.setCount)) with \("Repetition".pluralize(exercise.overrides?.setDefinition.repCount ?? 187))", systemImage: "list.number")
+							Label("\("Set".pluralize(fullOverrideChain.setCount)) with \("Repetition".pluralize(fullOverrideChain.setDefinition.repCount))", systemImage: "list.number")
 							Button("Change to individual Sets", systemImage: "sparkles.rectangle.stack") {
 								exercise.setDefinitions.append(.init())
 							}

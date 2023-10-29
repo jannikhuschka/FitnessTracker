@@ -27,7 +27,11 @@ struct ExerciseParamsOverride: HashEqCod {
 	var setDefinition: SetDefinitionOverride
 }
 
-struct ExerciseOverrideChain {
+enum ParamField: String, HashEqCod {
+	case possibleWeights, setCount, repCount, weightStage, pauseBehaviour
+}
+
+struct ExerciseOverrideChain: HashEqCod {
 	var root: ExerciseParams
 	var overrides: [ExerciseParamsOverride] = []
 	
@@ -54,12 +58,55 @@ struct ExerciseOverrideChain {
 		let pause = overrides.last(where: { $0.setDefinition.pause != nil })?.setDefinition.pause ?? root.setDefinition.pause
 		return .init(repCount: repCount, weightStage: weightStage, pause: pause)
 	}
+	
+	func levelFor(_ field: ParamField) -> String {
+		var level: Int = 0
+		switch(field) {
+		case .possibleWeights:
+			level = (overrides.lastIndex(where: { $0.possibleWeights != nil }) ?? -1) + 1
+			break
+		case .setCount:
+			level = (overrides.lastIndex(where: { $0.setCount != nil }) ?? -1) + 1
+			break
+		case .repCount:
+			level = (overrides.lastIndex(where: { $0.setDefinition.repCount != nil }) ?? -1) + 1
+			break
+		case .weightStage:
+			level = (overrides.lastIndex(where: { $0.setDefinition.weightStage != nil }) ?? -1) + 1
+			break
+		case .pauseBehaviour:
+			level = (overrides.lastIndex(where: { $0.setDefinition.pause != nil }) ?? -1) + 1
+			break
+		}
+		return levelString(level)
+	}
+	
+	func levelString(_ level: Int) -> String {
+		switch(level) {
+		case 0:
+			return "Training"
+		case 1:
+			return overrides.count > 1 ? "Superset" : "Exercise"
+		case 2:
+			return "Exercise"
+		default:
+			return "Unknown"
+		}
+	}
 }
 
 struct ExerciseDefinition: HashEqCod, Identifiable {
 	var id: UUID
 	var name: String
-	var setCount: Int { overrides?.setCount ?? (isSuperset ? supersetMembers.count : setDefinitions.count) }
+	func setCount(overrideChain: ExerciseOverrideChain) -> Int {
+		if(isSuperset) {
+			return supersetMembers.reduce(0, { $0 + $1.setCount(overrideChain: overrideChain.with($1.overrides)) })
+		}
+		if(isSimple) {
+			return overrideChain.setCount
+		}
+		return setDefinitions.count
+	}
 	var overrides: ExerciseParamsOverride?
 	
 	var setDefinitions: [SetDefinitionOverride] = []
@@ -129,6 +176,8 @@ struct TrainingSession : HashEqCod {
 struct Exercise: HashEqCod, Sendable {
 	var name: String
 	var sets: [Set] = []
+	var subExercises: [Exercise] = []
+	var isSuperset: Bool { !subExercises.isEmpty }
 }
 
 struct Set : HashEqCod, Sendable {
@@ -151,7 +200,8 @@ struct ExerciseHierarchy : HashEqCod {
 	init(definition: ExerciseDefinition, number: Int = 0) {
 		self.name = definition.name
 		self.number = number
-		self.setCount = definition.setCount
+//		self.setCount = definition.setCount
+		self.setCount = 187
 		self.repCount = definition.overrides?.setDefinition.repCount ?? 187
 		self.weight = definition.overrides?.setDefinition.weight(possibleWeights: definition.overrides?.possibleWeights ?? .init(baseWeight: 187, weightStep: 187)) ?? 187
 	}

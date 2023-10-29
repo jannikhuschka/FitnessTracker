@@ -22,11 +22,16 @@ struct OptionalPauseBehaviourEditView: View {
 					}
 				}
 		} else {
-			Button("Add Pause Override", systemImage: "plus.circle", action: {
-				withAnimation {
-					pause = overrideChain.setDefinition.pause
-				}
-			})
+			HStack {
+				Button("Pause", systemImage: "plus.circle", action: {
+					withAnimation {
+						pause = overrideChain.setDefinition.pause
+					}
+				})
+				Spacer()
+				Text("\(overrideChain.levelFor(.pauseBehaviour)): \(overrideChain.setDefinition.pause.mode.shortened)\(overrideChain.setDefinition.pause.mode == .infinitePause ? "" : " \(overrideChain.setDefinition.pause.duration.formatted(.number))s")")
+					.foregroundStyle(.gray)
+			}
 		}
 	}
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ValueDescriptionAbove<ControlContent1: View, ControlContent2: View>: View {
-	@State var description: String
+	var description: String
 	var value: String
 	@State var alignment: HorizontalAlignment
 	@State var descFont: Font
@@ -43,6 +43,7 @@ struct ValueDescriptionAbove<ControlContent1: View, ControlContent2: View>: View
 				.textCase(.uppercase)
 				.font(descFont)
 				.foregroundStyle(.gray)
+				.contentTransition(value.contains(/[0-9]/) ? .numericText() : .interpolate)
 			HStack {
 				control1()
 				Text(value)
