@@ -14,7 +14,7 @@ struct FitnessWidgetAttributes: ActivityAttributes {
 		// Dynamic stateful properties about your activity go here!
 		var stopwatchPaused: Bool = false
 		var pausePhase: Bool
-		var time: String
+		var date: Date
 		var exercise: Exercise
 		var exDef: ExerciseDefinition = .empty
 		var setDef: SetDefinition
@@ -51,6 +51,7 @@ struct FitnessWidgetLiveActivity: Widget {
 								
 								ForEach(Array(context.state.nextDefinitions[context.state.upcomingOffset...min(context.state.upcomingOffset + 1, context.state.nextDefinitions.count - 1)]), id: \.self) { next in
 									Button("\(next.name)", intent: SwapExercise.fromName(next.name))
+										.tint(.accent)
 								}
 								
 								if(context.state.nextDefinitions.count > 2 && context.state.upcomingOffset < context.state.nextDefinitions.count - 2) {
@@ -68,36 +69,29 @@ struct FitnessWidgetLiveActivity: Widget {
 					HStack {
 						Button(intent: ShortenPause()) {
 							Image(systemName: "minus.circle")
-//							Image(systemName: "stopwatch")
-//								.frame(width: 20, height: 20)
-//								.overlay(alignment: .bottomLeading) {
-//									Image(systemName: "minus.circle.fill")
-//										.font(.system(size: 9))
-//								}
 						}
+						.tint(.accent)
 						.disabled(!context.state.pausePhase || context.state.stopwatchPaused)
 						
 						VStack(alignment: .center, spacing: 0) {
 							Text(context.state.stopwatchPaused ? "Paused" : (context.state.pausePhase ? "Pause" : "Active"))
 								.textCase(.uppercase)
-								.foregroundStyle(.gray)
+								.foregroundStyle(.accent)
 								.font(.caption2)
 							
-							Button(context.state.stopwatchPaused ? "Resume" : context.state.time, intent: TrainingPlayPause())
+//							Text(context.state.date, style: .timer)
+//								.multilineTextAlignment(.center)
+							StopwatchTimeView(endOfPauseDate: context.state.date, pausePhase: context.state.pausePhase, paused: context.state.stopwatchPaused)
+								.multilineTextAlignment(.center)
 						}
+						.frame(width: 50)
 						
 						Button(intent: LengthenPause()) {
 							Image(systemName: "plus.circle")
-//							Image(systemName: "stopwatch")
-//								.frame(width: 20, height: 20)
-//								.overlay(alignment: .bottomLeading) {
-//									Image(systemName: "plus.circle.fill")
-//										.font(.system(size: 9))
-//								}
 						}
+						.tint(.accent)
 						.disabled(!context.state.pausePhase || context.state.stopwatchPaused)
 					}
-					.tint(context.state.stopwatchPaused ? .blue : (context.state.pausePhase ? .green : .white))
 					
 					Spacer()
 					
@@ -109,25 +103,29 @@ struct FitnessWidgetLiveActivity: Widget {
 						Image(systemName: "minus.circle")
 							.frame(width: 20, height: 20)
 					}
+					.foregroundStyle(.accent)
 					
 					ValueDescriptionAbove(description: "Weight", value: "\(context.state.currentWeight.formatted(.number)) kg", alignment: .trailing)
+//						.foregroundStyle(.accent)
 					
 					Button(intent: IncreaseWeight()) {
 						Image(systemName: "plus.circle")
 							.frame(width: 20, height: 20)
 					}
+					.foregroundStyle(.accent)
 				}
 				.buttonStyle(.borderless)
 				.font(.title2)
 				
 				ProgressView(value: Double(context.state.completedSets), total: Double(context.attributes.totalSets))
+					.tint(.accent)
 				
 				SelectableRepsView(range: context.state.repRange, height: 40, highlight: context.state.repsToBeat)
 				
 			}
 			.padding()
-			.activityBackgroundTint(Color.black)
-			.activitySystemActionForegroundColor(Color.white)
+			.activityBackgroundTint(.black)
+			.activitySystemActionForegroundColor(.white)
 			
 		} dynamicIsland: { context in
 			DynamicIsland {
@@ -175,11 +173,11 @@ extension FitnessWidgetAttributes.ContentState {
 	}
 	
 	fileprivate static var one: FitnessWidgetAttributes.ContentState {
-		FitnessWidgetAttributes.ContentState(pausePhase: false, time: "1:45", exercise: .empty, setDef: .init(repCount: 15, weightStage: 5, pause: .init()), repsToBeat: 5, currentWeight: 40, completedSets: 2)
+		FitnessWidgetAttributes.ContentState(pausePhase: false, date: .now, exercise: .empty, setDef: .init(repCount: 15, weightStage: 5, pause: .init()), repsToBeat: 5, currentWeight: 40, completedSets: 2)
 	}
 	
 	fileprivate static var two: FitnessWidgetAttributes.ContentState {
-		FitnessWidgetAttributes.ContentState(pausePhase: true, time: "00:45", exercise: .sample1, setDef: .init(repCount: 151, weightStage: 187, pause: .init()), repsToBeat: 15, currentWeight: 20, completedSets: 18)
+		FitnessWidgetAttributes.ContentState(pausePhase: true, date: .now, exercise: .sample1, setDef: .init(repCount: 151, weightStage: 187, pause: .init()), repsToBeat: 15, currentWeight: 20, completedSets: 18)
 	}
 }
 
