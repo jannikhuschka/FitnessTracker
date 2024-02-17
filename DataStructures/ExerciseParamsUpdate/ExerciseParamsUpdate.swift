@@ -31,7 +31,7 @@ extension ExerciseParamsUpdate {
 		var result: [any ExerciseParamsChangeAction] = []
 		
 		if exerciseDefinition.isSimple {
-			result.append(IncreaseWeightAction(valueBefore: overrideChain.setDefinition.weight(possibleWeights: overrideChain.possibleWeights), valueAfter: exercise.sets.map({ $0.weight }).min()! + overrideChain.possibleWeights.weightStep))
+			result.append(IncreaseWeightAction(valueBefore: Double(overrideChain.setDefinition.weightStage), valueAfter: Double((exercise.sets.map({ $0.weight }).min()! - overrideChain.possibleWeights.baseWeight) / overrideChain.possibleWeights.weightStep + 1), formattedValueBefore: "\((overrideChain.setDefinition.weight(possibleWeights: overrideChain.possibleWeights)).formatted(.number)) kg", formattedValueAfter: "\((exercise.sets.map({ $0.weight }).min()! + overrideChain.possibleWeights.weightStep).formatted(.number)) kg"))
 		} else if exerciseDefinition.isSuperset {
 			for subEx in exercise.subExercises {
 				result.append(contentsOf: getChanges(subExerciseName: subEx.name))

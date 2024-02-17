@@ -248,16 +248,16 @@
 			isa = PBXGroup;
 			children = (
 				0521C9442AED63CD00FB7BBE /* AdditionalExtensions.swift */,
+				052B39BA2B74B5B500B1E96E /* ChartColors.swift */,
 				0568928A2AE08011002084C9 /* ErrorWrapper.swift */,
-				056892882AE07ED5002084C9 /* TrainingStore.swift */,
-				052B39C82B74B70200B1E96E /* Definitions */,
-				052B39C72B74B6CE00B1E96E /* TrainingData */,
-				052B39BC2B74B5D200B1E96E /* ExerciseParamsUpdate */,
-				052B399E2B74B26500B1E96E /* Training.swift */,
 				059C1E4D2ADEDBF300547627 /* FitnessStopwatch.swift */,
 				0519A12F2B1B524E000E7D2C /* FitnessStopwatch2.swift */,
 				052B39C52B74B68D00B1E96E /* HashEqCod.swift */,
-				052B39BA2B74B5B500B1E96E /* ChartColors.swift */,
+				052B399E2B74B26500B1E96E /* Training.swift */,
+				056892882AE07ED5002084C9 /* TrainingStore.swift */,
+				052B39C82B74B70200B1E96E /* Definitions */,
+				052B39BC2B74B5D200B1E96E /* ExerciseParamsUpdate */,
+				052B39C72B74B6CE00B1E96E /* TrainingData */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";

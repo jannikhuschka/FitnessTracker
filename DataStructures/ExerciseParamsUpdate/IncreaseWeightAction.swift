@@ -6,8 +6,8 @@ struct IncreaseWeightAction: ExerciseParamsChangeAction, Hashable, Equatable {
 	public var setNumber: Int? = nil
 	public var valueBefore: Double
 	public var valueAfter: Double
-	public var formattedValueBefore: String { valueBefore.formatted(.number) + " kg" }
-	public var formattedValueAfter: String { valueAfter.formatted(.number) + " kg" }
+	public var formattedValueBefore: String = ""
+	public var formattedValueAfter: String = ""
 	public var executed: Bool = false
 	public func apply(_ exerciseDefinition: ExerciseDefinition) -> ExerciseDefinition {
 		var changedDefinition = exerciseDefinition
