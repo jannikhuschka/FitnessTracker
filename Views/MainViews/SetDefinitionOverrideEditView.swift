@@ -2,8 +2,8 @@ import SwiftUI
 import Combine
 
 struct SetDefinitionOverrideEditView: View {
-	@Binding var override: SetDefinitionOverride
-	var overrideChain: ExerciseOverrideChain
+	@Binding var override: OldSetDefinitionOverride
+	var overrideChain: OldExerciseOverrideChain
 	
 	var body: some View {
 		if let repBinding = override.repCount != nil ? Binding(get: { override.repCount! }, set: { override.repCount = $0 }) : nil {
@@ -35,5 +35,5 @@ struct SetDefinitionOverrideEditView: View {
 }
 
 #Preview {
-	SetDefinitionOverrideEditView(override: .constant(.init(repCount: 0, weightStage: 5, pause: PauseBehaviour())), overrideChain: .init(root: .sample))
+	SetDefinitionOverrideEditView(override: .constant(.init(repCount: 0, weightStage: 5, pause: OldPauseBehaviour())), overrideChain: .init(root: .sample))
 }

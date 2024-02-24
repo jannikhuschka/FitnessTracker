@@ -12,9 +12,9 @@ struct ActiveTrainingView2: View {
 	@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 	@ObservedObject private var stopwatch = FitnessStopwatch.Instance
 	@State var showingAlert: Bool = false
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	@State var liveActivity: Activity<FitnessWidgetAttributes>?
-	@State var tempUpcomingExercises: [ExerciseDefinition] = []
+	@State var tempUpcomingExercises: [OldExerciseDefinition] = []
 	@State var isPresentingReorderView: Bool = false
 	@State var isPresentingLastSession: Bool = false
 	@State var isPresentingUpdateTargets: Bool = false
@@ -25,8 +25,8 @@ struct ActiveTrainingView2: View {
 			return .seconds(Date().timeIntervalSince1970 - stopwatch.endOfPauseDate.timeIntervalSince1970)
 		}
 	}
-	private var allSessions: [TrainingSession] {
-		var sessions: [TrainingSession] = training.sessions
+	private var allSessions: [OldTrainingSession] {
+		var sessions: [OldTrainingSession] = training.sessions
 		sessions.append(stopwatch.session)
 		return sessions.reversed()
 	}

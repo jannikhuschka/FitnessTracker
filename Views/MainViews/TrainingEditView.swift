@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TrainingEditView: View {
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	@State private var newExerciseName = ""
 	@State var isPresentingNewExerciseView: Bool = false
 	
@@ -23,7 +23,7 @@ struct TrainingEditView: View {
 				List {
 					ForEach($training.exercises.indices, id: \.self) { i in
 						NavigationLink(destination: ExerciseEditView(exercise: $training.exercises[i], overrideChain: .init(root: training.defaults))) {
-							ExerciseListItem(exercise: training.exercises[i], overrideChain: ExerciseOverrideChain(root: training.defaults))
+							ExerciseListItem(exercise: training.exercises[i], overrideChain: OldExerciseOverrideChain(root: training.defaults))
 						}
 					}
 					.onDelete { indices in

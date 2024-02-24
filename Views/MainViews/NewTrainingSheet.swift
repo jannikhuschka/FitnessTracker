@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct NewTrainingSheet: View {
-	@State private var newTraining = Training.empty
-	@Binding var trainings: [Training]
+	@State private var newTraining = OldTraining.empty
+	@Binding var trainings: [OldTraining]
 	@Binding var isPresentingNewTrainingView: Bool
 	@State var showAlert: Bool = false
 	
@@ -35,5 +35,5 @@ struct NewTrainingSheet: View {
 }
 
 #Preview {
-	NewTrainingSheet(trainings: .constant(Training.sampleData), isPresentingNewTrainingView: .constant(true))
+	NewTrainingSheet(trainings: .constant(OldTraining.sampleData), isPresentingNewTrainingView: .constant(true))
 }

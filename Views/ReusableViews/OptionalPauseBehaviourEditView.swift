@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct OptionalPauseBehaviourEditView: View {
-	@Binding var pause: PauseBehaviour?
-	var overrideChain: ExerciseOverrideChain
+	@Binding var pause: OldPauseBehaviour?
+	var overrideChain: OldExerciseOverrideChain
 	
 	var body: some View {
 		if let pauseBinding = getBinding($pause) {
@@ -35,7 +35,7 @@ struct OptionalPauseBehaviourEditView: View {
 		}
 	}
 	
-	func getBinding(_ binding: Binding<PauseBehaviour?>) -> Binding<PauseBehaviour>? {
+	func getBinding(_ binding: Binding<OldPauseBehaviour?>) -> Binding<OldPauseBehaviour>? {
 		guard let wrappedValue = binding.wrappedValue else { return nil }
 		return Binding(
 			get: { wrappedValue },

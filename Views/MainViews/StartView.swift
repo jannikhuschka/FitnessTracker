@@ -2,7 +2,7 @@ import SwiftUI
 import UserNotifications
 
 struct StartView: View {
-	@Binding var trainings: [Training]
+	@Binding var trainings: [OldTraining]
 	@State private var selectedTab = "Training"
 	@Environment(\.scenePhase) private var scenePhase
 	@State private var isPresentingNewTrainingView = false
@@ -61,7 +61,7 @@ struct StartView: View {
 	}
 }
 #Preview {
-	StartView(trainings: .constant(Training.sampleData), saveAction: {})
+	StartView(trainings: .constant(OldTraining.sampleData), saveAction: {})
 }
 
 extension Binding {

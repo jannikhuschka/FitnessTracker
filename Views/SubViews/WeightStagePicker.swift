@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WeightStagePicker: View {
 	@Binding var weightStage: Int
-	var possibleWeights: PossibleWeights
+	var possibleWeights: OldPossibleWeights
 	
     var body: some View {
 		Picker(selection: $weightStage, label: Label("Weight Stage", systemImage: "scalemass.fill")) {

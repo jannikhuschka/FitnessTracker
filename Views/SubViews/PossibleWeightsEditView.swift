@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PossibleWeightsEditView: View {
-	@Binding var possibleWeights: PossibleWeights
+	@Binding var possibleWeights: OldPossibleWeights
 	
     var body: some View {
 		VStack {

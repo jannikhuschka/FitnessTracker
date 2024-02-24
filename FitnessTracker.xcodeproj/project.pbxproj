@@ -27,25 +27,25 @@
 		0521C9412AED3E1000FB7BBE /* OptionalPossibleWeightsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521C9402AED3E1000FB7BBE /* OptionalPossibleWeightsEditView.swift */; };
 		0521C9432AED3EB400FB7BBE /* OptionalWeightStagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521C9422AED3EB400FB7BBE /* OptionalWeightStagePicker.swift */; };
 		0521C9452AED63CD00FB7BBE /* AdditionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521C9442AED63CD00FB7BBE /* AdditionalExtensions.swift */; };
-		052B399F2B74B26500B1E96E /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B399E2B74B26500B1E96E /* Training.swift */; };
-		052B39A12B74B33000B1E96E /* ExerciseParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A02B74B33000B1E96E /* ExerciseParams.swift */; };
-		052B39A32B74B36A00B1E96E /* ExerciseParamsOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A22B74B36A00B1E96E /* ExerciseParamsOverride.swift */; };
+		052B399F2B74B26500B1E96E /* OldTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B399E2B74B26500B1E96E /* OldTraining.swift */; };
+		052B39A12B74B33000B1E96E /* OldExerciseParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A02B74B33000B1E96E /* OldExerciseParams.swift */; };
+		052B39A32B74B36A00B1E96E /* OldExerciseParamsOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A22B74B36A00B1E96E /* OldExerciseParamsOverride.swift */; };
 		052B39A52B74B3A000B1E96E /* ParamField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A42B74B3A000B1E96E /* ParamField.swift */; };
-		052B39A72B74B3B500B1E96E /* ExerciseOverrideChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A62B74B3B500B1E96E /* ExerciseOverrideChain.swift */; };
-		052B39A92B74B3EF00B1E96E /* ExerciseDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A82B74B3EF00B1E96E /* ExerciseDefinition.swift */; };
-		052B39AB2B74B43F00B1E96E /* SetDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AA2B74B43F00B1E96E /* SetDefinition.swift */; };
-		052B39AD2B74B46800B1E96E /* SetDefinitionOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AC2B74B46800B1E96E /* SetDefinitionOverride.swift */; };
-		052B39AF2B74B49100B1E96E /* PossibleWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AE2B74B49100B1E96E /* PossibleWeights.swift */; };
-		052B39B12B74B4DC00B1E96E /* PauseBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B02B74B4DC00B1E96E /* PauseBehaviour.swift */; };
-		052B39B32B74B4F400B1E96E /* PauseMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B22B74B4F400B1E96E /* PauseMode.swift */; };
-		052B39B52B74B52700B1E96E /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B42B74B52700B1E96E /* TrainingSession.swift */; };
-		052B39B72B74B55600B1E96E /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B62B74B55600B1E96E /* Exercise.swift */; };
-		052B39B92B74B55D00B1E96E /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B82B74B55D00B1E96E /* Set.swift */; };
+		052B39A72B74B3B500B1E96E /* OldExerciseOverrideChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A62B74B3B500B1E96E /* OldExerciseOverrideChain.swift */; };
+		052B39A92B74B3EF00B1E96E /* OldExerciseDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A82B74B3EF00B1E96E /* OldExerciseDefinition.swift */; };
+		052B39AB2B74B43F00B1E96E /* OldSetDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AA2B74B43F00B1E96E /* OldSetDefinition.swift */; };
+		052B39AD2B74B46800B1E96E /* OldSetDefinitionOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AC2B74B46800B1E96E /* OldSetDefinitionOverride.swift */; };
+		052B39AF2B74B49100B1E96E /* OldPossibleWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AE2B74B49100B1E96E /* OldPossibleWeights.swift */; };
+		052B39B12B74B4DC00B1E96E /* OldPauseBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B02B74B4DC00B1E96E /* OldPauseBehaviour.swift */; };
+		052B39B32B74B4F400B1E96E /* OldPauseMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B22B74B4F400B1E96E /* OldPauseMode.swift */; };
+		052B39B52B74B52700B1E96E /* OldTrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B42B74B52700B1E96E /* OldTrainingSession.swift */; };
+		052B39B72B74B55600B1E96E /* OldExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B62B74B55600B1E96E /* OldExercise.swift */; };
+		052B39B92B74B55D00B1E96E /* OldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B82B74B55D00B1E96E /* OldSet.swift */; };
 		052B39BB2B74B5B500B1E96E /* ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BA2B74B5B500B1E96E /* ChartColors.swift */; };
 		052B39BE2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BD2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift */; };
-		052B39C02B74B60100B1E96E /* ExerciseParamsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BF2B74B60100B1E96E /* ExerciseParamsUpdate.swift */; };
-		052B39C22B74B62D00B1E96E /* ExerciseParamsChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C12B74B62D00B1E96E /* ExerciseParamsChangeAction.swift */; };
-		052B39C42B74B65100B1E96E /* IncreaseWeightAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C32B74B65100B1E96E /* IncreaseWeightAction.swift */; };
+		052B39C02B74B60100B1E96E /* OldExerciseParamsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BF2B74B60100B1E96E /* OldExerciseParamsUpdate.swift */; };
+		052B39C22B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C12B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift */; };
+		052B39C42B74B65100B1E96E /* OldIncreaseWeightAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C32B74B65100B1E96E /* OldIncreaseWeightAction.swift */; };
 		052B39C62B74B68D00B1E96E /* HashEqCod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C52B74B68D00B1E96E /* HashEqCod.swift */; };
 		052B47812AE2F22800A58757 /* IntPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B47802AE2F22800A58757 /* IntPickerView.swift */; };
 		052B47832AE2F45000A58757 /* DoublePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B47822AE2F45000A58757 /* DoublePickerView.swift */; };
@@ -54,28 +54,28 @@
 		0548EEA22B761E5D00636060 /* FitnessStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C1E4D2ADEDBF300547627 /* FitnessStopwatch.swift */; };
 		0548EEA32B761E8200636060 /* AdditionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521C9442AED63CD00FB7BBE /* AdditionalExtensions.swift */; };
 		0548EEA42B761EA600636060 /* ExerciseParamsUpdateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BD2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift */; };
-		0548EEA52B761EA600636060 /* SetDefinitionOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AC2B74B46800B1E96E /* SetDefinitionOverride.swift */; };
+		0548EEA52B761EA600636060 /* OldSetDefinitionOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AC2B74B46800B1E96E /* OldSetDefinitionOverride.swift */; };
 		0548EEA62B761EA600636060 /* FitnessStopwatch2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519A12F2B1B524E000E7D2C /* FitnessStopwatch2.swift */; };
 		0548EEA72B761EA600636060 /* HashEqCod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C52B74B68D00B1E96E /* HashEqCod.swift */; };
-		0548EEA82B761EA600636060 /* PauseMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B22B74B4F400B1E96E /* PauseMode.swift */; };
-		0548EEA92B761EA600636060 /* ExerciseParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A02B74B33000B1E96E /* ExerciseParams.swift */; };
-		0548EEAA2B761EA600636060 /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B42B74B52700B1E96E /* TrainingSession.swift */; };
-		0548EEAB2B761EA600636060 /* IncreaseWeightAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C32B74B65100B1E96E /* IncreaseWeightAction.swift */; };
-		0548EEAC2B761EA600636060 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B399E2B74B26500B1E96E /* Training.swift */; };
-		0548EEAD2B761EA600636060 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B82B74B55D00B1E96E /* Set.swift */; };
-		0548EEAE2B761EA600636060 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B62B74B55600B1E96E /* Exercise.swift */; };
-		0548EEAF2B761EA600636060 /* ExerciseParamsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BF2B74B60100B1E96E /* ExerciseParamsUpdate.swift */; };
-		0548EEB02B761EA600636060 /* SetDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AA2B74B43F00B1E96E /* SetDefinition.swift */; };
-		0548EEB12B761EA600636060 /* PossibleWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AE2B74B49100B1E96E /* PossibleWeights.swift */; };
-		0548EEB22B761EA600636060 /* ExerciseParamsChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C12B74B62D00B1E96E /* ExerciseParamsChangeAction.swift */; };
-		0548EEB32B761EA600636060 /* ExerciseParamsOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A22B74B36A00B1E96E /* ExerciseParamsOverride.swift */; };
-		0548EEB42B761EA600636060 /* ExerciseOverrideChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A62B74B3B500B1E96E /* ExerciseOverrideChain.swift */; };
-		0548EEB52B761EA600636060 /* PauseBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B02B74B4DC00B1E96E /* PauseBehaviour.swift */; };
-		0548EEB62B761EA600636060 /* ExerciseDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A82B74B3EF00B1E96E /* ExerciseDefinition.swift */; };
+		0548EEA82B761EA600636060 /* OldPauseMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B22B74B4F400B1E96E /* OldPauseMode.swift */; };
+		0548EEA92B761EA600636060 /* OldExerciseParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A02B74B33000B1E96E /* OldExerciseParams.swift */; };
+		0548EEAA2B761EA600636060 /* OldTrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B42B74B52700B1E96E /* OldTrainingSession.swift */; };
+		0548EEAB2B761EA600636060 /* OldIncreaseWeightAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C32B74B65100B1E96E /* OldIncreaseWeightAction.swift */; };
+		0548EEAC2B761EA600636060 /* OldTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B399E2B74B26500B1E96E /* OldTraining.swift */; };
+		0548EEAD2B761EA600636060 /* OldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B82B74B55D00B1E96E /* OldSet.swift */; };
+		0548EEAE2B761EA600636060 /* OldExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B62B74B55600B1E96E /* OldExercise.swift */; };
+		0548EEAF2B761EA600636060 /* OldExerciseParamsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39BF2B74B60100B1E96E /* OldExerciseParamsUpdate.swift */; };
+		0548EEB02B761EA600636060 /* OldSetDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AA2B74B43F00B1E96E /* OldSetDefinition.swift */; };
+		0548EEB12B761EA600636060 /* OldPossibleWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39AE2B74B49100B1E96E /* OldPossibleWeights.swift */; };
+		0548EEB22B761EA600636060 /* OldExerciseParamsChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39C12B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift */; };
+		0548EEB32B761EA600636060 /* OldExerciseParamsOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A22B74B36A00B1E96E /* OldExerciseParamsOverride.swift */; };
+		0548EEB42B761EA600636060 /* OldExerciseOverrideChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A62B74B3B500B1E96E /* OldExerciseOverrideChain.swift */; };
+		0548EEB52B761EA600636060 /* OldPauseBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39B02B74B4DC00B1E96E /* OldPauseBehaviour.swift */; };
+		0548EEB62B761EA600636060 /* OldExerciseDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A82B74B3EF00B1E96E /* OldExerciseDefinition.swift */; };
 		0548EEB72B761EA600636060 /* ParamField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B39A42B74B3A000B1E96E /* ParamField.swift */; };
 		0548EEB82B761EB400636060 /* ValueDescriptionAbove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B7ABB2ADDCFFC00B907EC /* ValueDescriptionAbove.swift */; };
 		0548EEB92B761EB800636060 /* ValueDescriptionBelow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506D6042ADF3A580010D956 /* ValueDescriptionBelow.swift */; };
-		056892892AE07ED5002084C9 /* TrainingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056892882AE07ED5002084C9 /* TrainingStore.swift */; };
+		056892892AE07ED5002084C9 /* OldTrainingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056892882AE07ED5002084C9 /* OldTrainingStore.swift */; };
 		0568928B2AE08011002084C9 /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568928A2AE08011002084C9 /* ErrorWrapper.swift */; };
 		0568928D2AE08027002084C9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568928C2AE08027002084C9 /* ErrorView.swift */; };
 		0568928F2AE08381002084C9 /* TrainingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568928E2AE08381002084C9 /* TrainingEditView.swift */; };
@@ -160,31 +160,31 @@
 		0521C9402AED3E1000FB7BBE /* OptionalPossibleWeightsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalPossibleWeightsEditView.swift; sourceTree = "<group>"; };
 		0521C9422AED3EB400FB7BBE /* OptionalWeightStagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalWeightStagePicker.swift; sourceTree = "<group>"; };
 		0521C9442AED63CD00FB7BBE /* AdditionalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalExtensions.swift; sourceTree = "<group>"; };
-		052B399E2B74B26500B1E96E /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
-		052B39A02B74B33000B1E96E /* ExerciseParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParams.swift; sourceTree = "<group>"; };
-		052B39A22B74B36A00B1E96E /* ExerciseParamsOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParamsOverride.swift; sourceTree = "<group>"; };
+		052B399E2B74B26500B1E96E /* OldTraining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTraining.swift; sourceTree = "<group>"; };
+		052B39A02B74B33000B1E96E /* OldExerciseParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseParams.swift; sourceTree = "<group>"; };
+		052B39A22B74B36A00B1E96E /* OldExerciseParamsOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseParamsOverride.swift; sourceTree = "<group>"; };
 		052B39A42B74B3A000B1E96E /* ParamField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamField.swift; sourceTree = "<group>"; };
-		052B39A62B74B3B500B1E96E /* ExerciseOverrideChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOverrideChain.swift; sourceTree = "<group>"; };
-		052B39A82B74B3EF00B1E96E /* ExerciseDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDefinition.swift; sourceTree = "<group>"; };
-		052B39AA2B74B43F00B1E96E /* SetDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefinition.swift; sourceTree = "<group>"; };
-		052B39AC2B74B46800B1E96E /* SetDefinitionOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefinitionOverride.swift; sourceTree = "<group>"; };
-		052B39AE2B74B49100B1E96E /* PossibleWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleWeights.swift; sourceTree = "<group>"; };
-		052B39B02B74B4DC00B1E96E /* PauseBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseBehaviour.swift; sourceTree = "<group>"; };
-		052B39B22B74B4F400B1E96E /* PauseMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMode.swift; sourceTree = "<group>"; };
-		052B39B42B74B52700B1E96E /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
-		052B39B62B74B55600B1E96E /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		052B39B82B74B55D00B1E96E /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		052B39A62B74B3B500B1E96E /* OldExerciseOverrideChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseOverrideChain.swift; sourceTree = "<group>"; };
+		052B39A82B74B3EF00B1E96E /* OldExerciseDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseDefinition.swift; sourceTree = "<group>"; };
+		052B39AA2B74B43F00B1E96E /* OldSetDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSetDefinition.swift; sourceTree = "<group>"; };
+		052B39AC2B74B46800B1E96E /* OldSetDefinitionOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSetDefinitionOverride.swift; sourceTree = "<group>"; };
+		052B39AE2B74B49100B1E96E /* OldPossibleWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPossibleWeights.swift; sourceTree = "<group>"; };
+		052B39B02B74B4DC00B1E96E /* OldPauseBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPauseBehaviour.swift; sourceTree = "<group>"; };
+		052B39B22B74B4F400B1E96E /* OldPauseMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPauseMode.swift; sourceTree = "<group>"; };
+		052B39B42B74B52700B1E96E /* OldTrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTrainingSession.swift; sourceTree = "<group>"; };
+		052B39B62B74B55600B1E96E /* OldExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExercise.swift; sourceTree = "<group>"; };
+		052B39B82B74B55D00B1E96E /* OldSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSet.swift; sourceTree = "<group>"; };
 		052B39BA2B74B5B500B1E96E /* ChartColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColors.swift; sourceTree = "<group>"; };
 		052B39BD2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParamsUpdateType.swift; sourceTree = "<group>"; };
-		052B39BF2B74B60100B1E96E /* ExerciseParamsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParamsUpdate.swift; sourceTree = "<group>"; };
-		052B39C12B74B62D00B1E96E /* ExerciseParamsChangeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParamsChangeAction.swift; sourceTree = "<group>"; };
-		052B39C32B74B65100B1E96E /* IncreaseWeightAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseWeightAction.swift; sourceTree = "<group>"; };
+		052B39BF2B74B60100B1E96E /* OldExerciseParamsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseParamsUpdate.swift; sourceTree = "<group>"; };
+		052B39C12B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExerciseParamsChangeAction.swift; sourceTree = "<group>"; };
+		052B39C32B74B65100B1E96E /* OldIncreaseWeightAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldIncreaseWeightAction.swift; sourceTree = "<group>"; };
 		052B39C52B74B68D00B1E96E /* HashEqCod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashEqCod.swift; sourceTree = "<group>"; };
 		052B47802AE2F22800A58757 /* IntPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntPickerView.swift; sourceTree = "<group>"; };
 		052B47822AE2F45000A58757 /* DoublePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePickerView.swift; sourceTree = "<group>"; };
 		052B7ABB2ADDCFFC00B907EC /* ValueDescriptionAbove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueDescriptionAbove.swift; sourceTree = "<group>"; };
 		0548EE9C2B761C0A00636060 /* LinePointMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinePointMark.swift; sourceTree = "<group>"; };
-		056892882AE07ED5002084C9 /* TrainingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStore.swift; sourceTree = "<group>"; };
+		056892882AE07ED5002084C9 /* OldTrainingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTrainingStore.swift; sourceTree = "<group>"; };
 		0568928A2AE08011002084C9 /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		0568928C2AE08027002084C9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		0568928E2AE08381002084C9 /* TrainingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingEditView.swift; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				059C1E4D2ADEDBF300547627 /* FitnessStopwatch.swift */,
 				0519A12F2B1B524E000E7D2C /* FitnessStopwatch2.swift */,
 				052B39C52B74B68D00B1E96E /* HashEqCod.swift */,
-				052B399E2B74B26500B1E96E /* Training.swift */,
-				056892882AE07ED5002084C9 /* TrainingStore.swift */,
+				052B399E2B74B26500B1E96E /* OldTraining.swift */,
+				056892882AE07ED5002084C9 /* OldTrainingStore.swift */,
 				052B39C82B74B70200B1E96E /* Definitions */,
 				052B39BC2B74B5D200B1E96E /* ExerciseParamsUpdate */,
 				052B39C72B74B6CE00B1E96E /* TrainingData */,
@@ -266,9 +266,9 @@
 			isa = PBXGroup;
 			children = (
 				052B39BD2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift */,
-				052B39BF2B74B60100B1E96E /* ExerciseParamsUpdate.swift */,
-				052B39C12B74B62D00B1E96E /* ExerciseParamsChangeAction.swift */,
-				052B39C32B74B65100B1E96E /* IncreaseWeightAction.swift */,
+				052B39BF2B74B60100B1E96E /* OldExerciseParamsUpdate.swift */,
+				052B39C12B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift */,
+				052B39C32B74B65100B1E96E /* OldIncreaseWeightAction.swift */,
 			);
 			path = ExerciseParamsUpdate;
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 		052B39C72B74B6CE00B1E96E /* TrainingData */ = {
 			isa = PBXGroup;
 			children = (
-				052B39B42B74B52700B1E96E /* TrainingSession.swift */,
-				052B39B62B74B55600B1E96E /* Exercise.swift */,
-				052B39B82B74B55D00B1E96E /* Set.swift */,
+				052B39B42B74B52700B1E96E /* OldTrainingSession.swift */,
+				052B39B62B74B55600B1E96E /* OldExercise.swift */,
+				052B39B82B74B55D00B1E96E /* OldSet.swift */,
 			);
 			path = TrainingData;
 			sourceTree = "<group>";
@@ -287,15 +287,15 @@
 			isa = PBXGroup;
 			children = (
 				052B39A42B74B3A000B1E96E /* ParamField.swift */,
-				052B39A22B74B36A00B1E96E /* ExerciseParamsOverride.swift */,
-				052B39A02B74B33000B1E96E /* ExerciseParams.swift */,
-				052B39A62B74B3B500B1E96E /* ExerciseOverrideChain.swift */,
-				052B39A82B74B3EF00B1E96E /* ExerciseDefinition.swift */,
-				052B39AA2B74B43F00B1E96E /* SetDefinition.swift */,
-				052B39AC2B74B46800B1E96E /* SetDefinitionOverride.swift */,
-				052B39AE2B74B49100B1E96E /* PossibleWeights.swift */,
-				052B39B02B74B4DC00B1E96E /* PauseBehaviour.swift */,
-				052B39B22B74B4F400B1E96E /* PauseMode.swift */,
+				052B39A22B74B36A00B1E96E /* OldExerciseParamsOverride.swift */,
+				052B39A02B74B33000B1E96E /* OldExerciseParams.swift */,
+				052B39A62B74B3B500B1E96E /* OldExerciseOverrideChain.swift */,
+				052B39A82B74B3EF00B1E96E /* OldExerciseDefinition.swift */,
+				052B39AA2B74B43F00B1E96E /* OldSetDefinition.swift */,
+				052B39AC2B74B46800B1E96E /* OldSetDefinitionOverride.swift */,
+				052B39AE2B74B49100B1E96E /* OldPossibleWeights.swift */,
+				052B39B02B74B4DC00B1E96E /* OldPauseBehaviour.swift */,
+				052B39B22B74B4F400B1E96E /* OldPauseMode.swift */,
 			);
 			path = Definitions;
 			sourceTree = "<group>";
@@ -546,17 +546,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				052B39B12B74B4DC00B1E96E /* PauseBehaviour.swift in Sources */,
+				052B39B12B74B4DC00B1E96E /* OldPauseBehaviour.swift in Sources */,
 				052B39BB2B74B5B500B1E96E /* ChartColors.swift in Sources */,
-				052B39B92B74B55D00B1E96E /* Set.swift in Sources */,
-				052B39A12B74B33000B1E96E /* ExerciseParams.swift in Sources */,
-				052B39AF2B74B49100B1E96E /* PossibleWeights.swift in Sources */,
+				052B39B92B74B55D00B1E96E /* OldSet.swift in Sources */,
+				052B39A12B74B33000B1E96E /* OldExerciseParams.swift in Sources */,
+				052B39AF2B74B49100B1E96E /* OldPossibleWeights.swift in Sources */,
 				052B7ABC2ADDCFFC00B907EC /* ValueDescriptionAbove.swift in Sources */,
-				052B39A72B74B3B500B1E96E /* ExerciseOverrideChain.swift in Sources */,
+				052B39A72B74B3B500B1E96E /* OldExerciseOverrideChain.swift in Sources */,
 				05F5968B2AF3DE320078A725 /* ExerciseListItem.swift in Sources */,
 				051118032AE3E90300A676D4 /* NumberTextField.swift in Sources */,
 				0521C9332AED0FCB00FB7BBE /* PossibleWeightsEditView.swift in Sources */,
-				052B39C42B74B65100B1E96E /* IncreaseWeightAction.swift in Sources */,
+				052B39C42B74B65100B1E96E /* OldIncreaseWeightAction.swift in Sources */,
 				05C6E41C2B60141600343C58 /* UpdateTargetsView.swift in Sources */,
 				056B10302AE3FE7E00FE80EC /* IntTextField.swift in Sources */,
 				0519A1302B1B524E000E7D2C /* FitnessStopwatch2.swift in Sources */,
@@ -564,27 +564,27 @@
 				0506D6052ADF3A580010D956 /* ValueDescriptionBelow.swift in Sources */,
 				05F1F4412B35A670006BB9A0 /* StopwatchTimeView.swift in Sources */,
 				05BEB01A2AF689EF00C34B70 /* ExerciseChart.swift in Sources */,
-				052B39B72B74B55600B1E96E /* Exercise.swift in Sources */,
+				052B39B72B74B55600B1E96E /* OldExercise.swift in Sources */,
 				0506A5BE2AEFB2DA008B527A /* SimpleSetRow.swift in Sources */,
 				05C50B872ADEFDF5008E6AAB /* TrainingListItem.swift in Sources */,
 				0521C9452AED63CD00FB7BBE /* AdditionalExtensions.swift in Sources */,
 				052B39BE2B74B5EA00B1E96E /* ExerciseParamsUpdateType.swift in Sources */,
-				052B39A92B74B3EF00B1E96E /* ExerciseDefinition.swift in Sources */,
+				052B39A92B74B3EF00B1E96E /* OldExerciseDefinition.swift in Sources */,
 				0568928D2AE08027002084C9 /* ErrorView.swift in Sources */,
 				05CA21F82AE13AA300DC9A96 /* InfoField.swift in Sources */,
-				052B39B52B74B52700B1E96E /* TrainingSession.swift in Sources */,
+				052B39B52B74B52700B1E96E /* OldTrainingSession.swift in Sources */,
 				0579D5B02AE2663A00E25002 /* RepSubmitButton.swift in Sources */,
 				059B6E6B2AEA4E0600156FDA /* ExerciseEditView.swift in Sources */,
 				0521C9432AED3EB400FB7BBE /* OptionalWeightStagePicker.swift in Sources */,
-				052B39C22B74B62D00B1E96E /* ExerciseParamsChangeAction.swift in Sources */,
-				052B39AD2B74B46800B1E96E /* SetDefinitionOverride.swift in Sources */,
+				052B39C22B74B62D00B1E96E /* OldExerciseParamsChangeAction.swift in Sources */,
+				052B39AD2B74B46800B1E96E /* OldSetDefinitionOverride.swift in Sources */,
 				051118072AE3F8E200A676D4 /* SetDefinitionEditView.swift in Sources */,
 				0521C93F2AED3B3D00FB7BBE /* OptionalPauseBehaviourEditView.swift in Sources */,
 				05D1D5AA2AF40C8A00BCEDE5 /* StatsView.swift in Sources */,
-				052B39AB2B74B43F00B1E96E /* SetDefinition.swift in Sources */,
-				056892892AE07ED5002084C9 /* TrainingStore.swift in Sources */,
-				052B399F2B74B26500B1E96E /* Training.swift in Sources */,
-				052B39A32B74B36A00B1E96E /* ExerciseParamsOverride.swift in Sources */,
+				052B39AB2B74B43F00B1E96E /* OldSetDefinition.swift in Sources */,
+				056892892AE07ED5002084C9 /* OldTrainingStore.swift in Sources */,
+				052B399F2B74B26500B1E96E /* OldTraining.swift in Sources */,
+				052B39A32B74B36A00B1E96E /* OldExerciseParamsOverride.swift in Sources */,
 				05C50B852ADEFBAB008E6AAB /* TrainingsView.swift in Sources */,
 				051751582AE585BB009A88B2 /* PartialRing.swift in Sources */,
 				0521C9392AED29D200FB7BBE /* SetDefinitionOverrideEditView.swift in Sources */,
@@ -596,7 +596,7 @@
 				0568928B2AE08011002084C9 /* ErrorWrapper.swift in Sources */,
 				0521C9312AED0CC300FB7BBE /* ExerciseParamsEditView.swift in Sources */,
 				059B6E6F2AEA66FE00156FDA /* NewExerciseView.swift in Sources */,
-				052B39B32B74B4F400B1E96E /* PauseMode.swift in Sources */,
+				052B39B32B74B4F400B1E96E /* OldPauseMode.swift in Sources */,
 				0506D6032ADF2E470010D956 /* SessionView.swift in Sources */,
 				059C1E4E2ADEDBF300547627 /* FitnessStopwatch.swift in Sources */,
 				05C90B8C2ADDCC9C0091F51E /* AppIntent.swift in Sources */,
@@ -615,7 +615,7 @@
 				0519A12E2B1B4B6A000E7D2C /* ActiveTrainingView2.swift in Sources */,
 				052B47832AE2F45000A58757 /* DoublePickerView.swift in Sources */,
 				05B332C12AF117E7005BD011 /* FitnessWidgetLiveActivity.swift in Sources */,
-				052B39C02B74B60100B1E96E /* ExerciseParamsUpdate.swift in Sources */,
+				052B39C02B74B60100B1E96E /* OldExerciseParamsUpdate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,36 +623,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0548EEB32B761EA600636060 /* ExerciseParamsOverride.swift in Sources */,
-				0548EEAA2B761EA600636060 /* TrainingSession.swift in Sources */,
+				0548EEB32B761EA600636060 /* OldExerciseParamsOverride.swift in Sources */,
+				0548EEAA2B761EA600636060 /* OldTrainingSession.swift in Sources */,
 				0548EEA42B761EA600636060 /* ExerciseParamsUpdateType.swift in Sources */,
 				0577BCEC2ADDC806000991CD /* FitnessWidget.swift in Sources */,
 				0548EEB82B761EB400636060 /* ValueDescriptionAbove.swift in Sources */,
 				0548EEA72B761EA600636060 /* HashEqCod.swift in Sources */,
 				0515F6F82ADDDB1900F11D3C /* SelectableRepsView.swift in Sources */,
 				0548EEB72B761EA600636060 /* ParamField.swift in Sources */,
-				0548EEAE2B761EA600636060 /* Exercise.swift in Sources */,
+				0548EEAE2B761EA600636060 /* OldExercise.swift in Sources */,
 				0548EEA22B761E5D00636060 /* FitnessStopwatch.swift in Sources */,
 				0548EEB92B761EB800636060 /* ValueDescriptionBelow.swift in Sources */,
 				05C90B8D2ADDCC9C0091F51E /* AppIntent.swift in Sources */,
-				0548EEAC2B761EA600636060 /* Training.swift in Sources */,
-				0548EEB52B761EA600636060 /* PauseBehaviour.swift in Sources */,
+				0548EEAC2B761EA600636060 /* OldTraining.swift in Sources */,
+				0548EEB52B761EA600636060 /* OldPauseBehaviour.swift in Sources */,
 				0577BCEA2ADDC806000991CD /* FitnessWidgetLiveActivity.swift in Sources */,
-				0548EEB62B761EA600636060 /* ExerciseDefinition.swift in Sources */,
+				0548EEB62B761EA600636060 /* OldExerciseDefinition.swift in Sources */,
 				05F1F4422B35A670006BB9A0 /* StopwatchTimeView.swift in Sources */,
-				0548EEB12B761EA600636060 /* PossibleWeights.swift in Sources */,
-				0548EEAF2B761EA600636060 /* ExerciseParamsUpdate.swift in Sources */,
-				0548EEA52B761EA600636060 /* SetDefinitionOverride.swift in Sources */,
-				0548EEB22B761EA600636060 /* ExerciseParamsChangeAction.swift in Sources */,
+				0548EEB12B761EA600636060 /* OldPossibleWeights.swift in Sources */,
+				0548EEAF2B761EA600636060 /* OldExerciseParamsUpdate.swift in Sources */,
+				0548EEA52B761EA600636060 /* OldSetDefinitionOverride.swift in Sources */,
+				0548EEB22B761EA600636060 /* OldExerciseParamsChangeAction.swift in Sources */,
 				0577BCE82ADDC806000991CD /* FitnessWidgetBundle.swift in Sources */,
 				0548EEA62B761EA600636060 /* FitnessStopwatch2.swift in Sources */,
-				0548EEA92B761EA600636060 /* ExerciseParams.swift in Sources */,
-				0548EEAD2B761EA600636060 /* Set.swift in Sources */,
-				0548EEA82B761EA600636060 /* PauseMode.swift in Sources */,
-				0548EEB42B761EA600636060 /* ExerciseOverrideChain.swift in Sources */,
+				0548EEA92B761EA600636060 /* OldExerciseParams.swift in Sources */,
+				0548EEAD2B761EA600636060 /* OldSet.swift in Sources */,
+				0548EEA82B761EA600636060 /* OldPauseMode.swift in Sources */,
+				0548EEB42B761EA600636060 /* OldExerciseOverrideChain.swift in Sources */,
 				0548EEA32B761E8200636060 /* AdditionalExtensions.swift in Sources */,
-				0548EEB02B761EA600636060 /* SetDefinition.swift in Sources */,
-				0548EEAB2B761EA600636060 /* IncreaseWeightAction.swift in Sources */,
+				0548EEB02B761EA600636060 /* OldSetDefinition.swift in Sources */,
+				0548EEAB2B761EA600636060 /* OldIncreaseWeightAction.swift in Sources */,
 				0579D5B12AE2663A00E25002 /* RepSubmitButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

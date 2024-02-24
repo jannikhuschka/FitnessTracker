@@ -1,14 +1,14 @@
 import Foundation
 
-struct Exercise: HashEqCod, Sendable {
+struct OldExercise: HashEqCod, Sendable {
 	var name: String
-	var sets: [Set] = []
-	var subExercises: [Exercise] = []
+	var sets: [OldSet] = []
+	var subExercises: [OldExercise] = []
 	var isSuperset: Bool { !subExercises.isEmpty }
 }
 
-extension Exercise {
-	static func fromDefinition(definition: ExerciseDefinition) -> Exercise {
+extension OldExercise {
+	static func fromDefinition(definition: OldExerciseDefinition) -> OldExercise {
 		.init(name: definition.name)
 	}
 	
@@ -28,7 +28,7 @@ extension Exercise {
 		return sets.reduce(0, { $0 + (Double($1.reps) * $1.weight) }) / Double(sets.count)
 	}
 	
-	public func needsChanges(_ definition: ExerciseDefinition, overrides: ExerciseOverrideChain) -> Bool {
+	public func needsChanges(_ definition: OldExerciseDefinition, overrides: OldExerciseOverrideChain) -> Bool {
 		if definition.isSimple {
 			if (sets.indices.allSatisfy({ i in
 				let setDef = definition.setDefinition(number: i, overrideChain: overrides)
@@ -49,39 +49,39 @@ extension Exercise {
 	}
 }
 
-extension [Exercise] {
-	func fromDefinition(_ definition: ExerciseDefinition) -> Exercise? {
+extension [OldExercise] {
+	func fromDefinition(_ definition: OldExerciseDefinition) -> OldExercise? {
 		first(where: {$0.name == definition.name})
 	}
 }
 
-extension Exercise {
-	public static var empty: Exercise {
-		Exercise(name: "Emptyexercise")
+extension OldExercise {
+	public static var empty: OldExercise {
+		OldExercise(name: "Emptyexercise")
 	}
 	
-	public static var sample1: Exercise {
-		var result = Exercise(name: "Brustpresse")
+	public static var sample1: OldExercise {
+		var result = OldExercise(name: "Brustpresse")
 		result.sets = [.sample1, .sample2, .sample3]
 		return result
 	}
-	public static var sample2: Exercise {
-		var result = Exercise(name: "Butterfly")
+	public static var sample2: OldExercise {
+		var result = OldExercise(name: "Butterfly")
 		result.sets = [.sample2, .sample4, .sample5, .sample1, .sample3]
 		return result
 	}
-	public static var sample3: Exercise {
-		var result = Exercise(name: "Beinpresse")
+	public static var sample3: OldExercise {
+		var result = OldExercise(name: "Beinpresse")
 		result.sets = [.sample3, .sample5]
 		return result
 	}
-	public static var sample4: Exercise {
-		var result = Exercise(name: "Klimmzüge")
+	public static var sample4: OldExercise {
+		var result = OldExercise(name: "Klimmzüge")
 		result.sets = [.sample5]
 		return result
 	}
-	public static var sample5: Exercise {
-		var result = Exercise(name: "Dips")
+	public static var sample5: OldExercise {
+		var result = OldExercise(name: "Dips")
 		result.sets = [.sample4, .sample3, .sample2, .sample4]
 		return result
 	}

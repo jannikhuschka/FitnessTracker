@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TrainingsView: View {
-	@Binding var trainings: [Training]
+	@Binding var trainings: [OldTraining]
 	@Environment(\.scenePhase) private var scenePhase
 	@State private var isPresentingNewTrainingView = false
 //	@State var comparator: any TrainingComparator = TrainingDateComparator()
@@ -54,5 +54,5 @@ struct TrainingsView: View {
 
 
 #Preview {
-	TrainingsView(trainings: .constant(Training.sampleData), saveAction: {})
+	TrainingsView(trainings: .constant(OldTraining.sampleData), saveAction: {})
 }

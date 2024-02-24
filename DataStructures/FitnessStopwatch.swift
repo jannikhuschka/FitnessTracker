@@ -16,32 +16,32 @@ final class FitnessStopwatch: ObservableObject {
 	@Published var completed = false
 	@Published var liveActivityUpdate: Bool = false
 	
-	@Published var currentSupersetDef: ExerciseDefinition?
-	@Published var currentExDef: ExerciseDefinition = .empty
-	@Published var currentSetDef: SetDefinition = .init(repCount: 15, weightStage: 5, pause: .init())
-	@Published var currentSupersetExercise: Exercise?
-	@Published var currentExercise: Exercise = .empty
-	@Published var upcomingExercises: [ExerciseDefinition] = []
-	@Published var postponedExercises: [Exercise] = []
-	@Published var targetsReachedExercises: [ExerciseParamsUpdate] = []
+	@Published var currentSupersetDef: OldExerciseDefinition?
+	@Published var currentExDef: OldExerciseDefinition = .empty
+	@Published var currentSetDef: OldSetDefinition = .init(repCount: 15, weightStage: 5, pause: .init())
+	@Published var currentSupersetExercise: OldExercise?
+	@Published var currentExercise: OldExercise = .empty
+	@Published var upcomingExercises: [OldExerciseDefinition] = []
+	@Published var postponedExercises: [OldExercise] = []
+	@Published var targetsReachedExercises: [OldExerciseParamsUpdate] = []
 	@Published var completedSets: Int = 0
 	@Published var totalSets: Int = 0
 	@Published var totalMovedWeight: Double = 0
 	@Published var repsToBeat: Int = -1
 	@Published var currentWeight: Double = 0
 	
-	public var training: Training = .empty
+	public var training: OldTraining = .empty
 	public var liveActivity: Activity<FitnessWidgetAttributes>?
 	private var liveActivityUpcomingOffset: Int = 0
-	public var session: TrainingSession = .empty
-	private var lastSession: TrainingSession?
+	public var session: OldTrainingSession = .empty
+	private var lastSession: OldTrainingSession?
 	
 	private var frequency: TimeInterval { 1.0 / 5.0 }
 	@Published var startDate: Date?
 	@Published var lastSetCompleteDate: Date = Date()
 	@Published var totalPauseTime: TimeInterval = .zero
 	@Published var pauseDate: Date?
-	@Published var pauseMode: PauseMode = .fixedPauseDuration
+	@Published var pauseMode: OldPauseMode = .fixedPauseDuration
 	private var pauseModeDuration: Double { Double(currentSetDef.pause.duration) }
 	@Published var endOfPauseDate: Date = Date()
 	private var wakeScreenTask: Task<Void, Error> = Task { return }
@@ -180,7 +180,7 @@ final class FitnessStopwatch: ObservableObject {
 			nextSupersetSet()
 		}
 		
-		if(currentSupersetDef?.isCompletedBy(currentSupersetExercise, overrideChain: ExerciseOverrideChain(root: training.defaults, overrides: [currentSupersetDef?.overrides])) ?? currentExDef.isCompletedBy(currentExercise, overrideChain: completeOverrideChain)) {
+		if(currentSupersetDef?.isCompletedBy(currentSupersetExercise, overrideChain: OldExerciseOverrideChain(root: training.defaults, overrides: [currentSupersetDef?.overrides])) ?? currentExDef.isCompletedBy(currentExercise, overrideChain: completeOverrideChain)) {
 			nextExercise()
 		}
 		
@@ -212,7 +212,7 @@ final class FitnessStopwatch: ObservableObject {
 	func nextExercise() {
 		session.exercises.append(currentSupersetExercise ?? currentExercise)
 		let overrideChain = currentSupersetExercise != nil ? supersetOverrideChain : completeOverrideChain
-		if let changes = ExerciseParamsUpdate.neededFor(exerciseDefinition: currentSupersetDef ?? currentExDef, exercise: currentSupersetExercise ?? currentExercise, overrideChain: overrideChain) {
+		if let changes = OldExerciseParamsUpdate.neededFor(exerciseDefinition: currentSupersetDef ?? currentExDef, exercise: currentSupersetExercise ?? currentExercise, overrideChain: overrideChain) {
 			targetsReachedExercises.append(changes)
 		}
 //		if (currentSupersetExercise ?? currentExercise).completedTarget(currentSupersetDef ?? currentExDef, overrides: overrideChain) {
@@ -265,7 +265,7 @@ final class FitnessStopwatch: ObservableObject {
 		saveCurrentExerciseAndLoadNext()
 	}
 	
-	func setUpcomingExercises(_ upcoming: [ExerciseDefinition]) {
+	func setUpcomingExercises(_ upcoming: [OldExerciseDefinition]) {
 		upcomingExercises = upcoming
 		if(upcoming.first?.name != currentExDef.name) {
 			saveCurrentExerciseAndLoadNext()
@@ -336,11 +336,11 @@ final class FitnessStopwatch: ObservableObject {
 //		}
 //	}
 	
-	var completeOverrideChain: ExerciseOverrideChain {
+	var completeOverrideChain: OldExerciseOverrideChain {
 		.init(root: training.defaults, overrides: [currentSupersetDef?.overrides, currentExDef.overrides])
 	}
 	
-	var supersetOverrideChain: ExerciseOverrideChain {
+	var supersetOverrideChain: OldExerciseOverrideChain {
 		.init(root: training.defaults, overrides: [currentSupersetDef?.overrides])
 	}
 	

@@ -2,7 +2,7 @@ import SwiftUI
 import Charts
 
 struct TrainingStatsView: View {
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	
     var body: some View {
 		NavigationStack {

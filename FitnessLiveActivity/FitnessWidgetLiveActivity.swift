@@ -15,11 +15,11 @@ struct FitnessWidgetAttributes: ActivityAttributes {
 		var stopwatchPaused: Bool = false
 		var pausePhase: Bool
 		var date: Date
-		var exercise: Exercise
-		var exDef: ExerciseDefinition = .empty
-		var setDef: SetDefinition
-		var nextDefinitions: [ExerciseDefinition] = []
-		var overrideChain: ExerciseOverrideChain = .sample
+		var exercise: OldExercise
+		var exDef: OldExerciseDefinition = .empty
+		var setDef: OldSetDefinition
+		var nextDefinitions: [OldExerciseDefinition] = []
+		var overrideChain: OldExerciseOverrideChain = .sample
 		var upcomingOffset: Int = 0
 		var repsToBeat: Int
 		var currentWeight: Double

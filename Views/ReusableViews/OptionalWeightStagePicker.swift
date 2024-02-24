@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OptionalWeightStagePicker: View {
 	@Binding var weightStage: Int?
-	var overrideChain: ExerciseOverrideChain
+	var overrideChain: OldExerciseOverrideChain
 	
     var body: some View {
 		if let weightStageBinding = getBinding($weightStage) {

@@ -1,12 +1,12 @@
 import Foundation
 
-struct ExerciseParamsOverride: HashEqCod {
-	var possibleWeights: PossibleWeights?
+struct OldExerciseParamsOverride: HashEqCod {
+	var possibleWeights: OldPossibleWeights?
 	var setCount: Int?
-	var setDefinition: SetDefinitionOverride = .init()
+	var setDefinition: OldSetDefinitionOverride = .init()
 }
 
-extension ExerciseParamsOverride {
+extension OldExerciseParamsOverride {
 	var overrideCount: Int {
 //		(possibleWeights != nil ? 1 : 0) +
 //		(setCount != nil 1 : 0) +
@@ -18,6 +18,6 @@ extension ExerciseParamsOverride {
 	}
 }
 
-extension ExerciseParamsOverride {
-	public static var empty: ExerciseParamsOverride { .init(setDefinition: .init()) }
+extension OldExerciseParamsOverride {
+	public static var empty: OldExerciseParamsOverride { .init(setDefinition: .init()) }
 }

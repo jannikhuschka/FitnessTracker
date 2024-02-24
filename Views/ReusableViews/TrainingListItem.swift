@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TrainingListItem: View {
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	
 	var body: some View {
 		HStack(spacing: 15) {

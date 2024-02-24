@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct ExerciseParamsOverrideEditView: View {
-	@Binding var override: ExerciseParamsOverride
-	@Binding var exercise: ExerciseDefinition
-	var overrideChain: ExerciseOverrideChain
+	@Binding var override: OldExerciseParamsOverride
+	@Binding var exercise: OldExerciseDefinition
+	var overrideChain: OldExerciseOverrideChain
 	
 	var body: some View {
 		Form {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatsView: View {
-	@Binding var trainings: [Training]
+	@Binding var trainings: [OldTraining]
 	
     var body: some View {
 		NavigationStack {
@@ -25,5 +25,5 @@ struct StatsView: View {
 }
 
 #Preview {
-	StatsView(trainings: .constant(Training.sampleData))
+	StatsView(trainings: .constant(OldTraining.sampleData))
 }

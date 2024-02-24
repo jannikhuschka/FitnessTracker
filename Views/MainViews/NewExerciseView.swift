@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NewExerciseView: View {
-	@State private var newExercise = ExerciseDefinition.empty
-	@Binding var exerciseArray: [ExerciseDefinition]
+	@State private var newExercise = OldExerciseDefinition.empty
+	@Binding var exerciseArray: [OldExerciseDefinition]
 	@Binding var isPresentingNewExerciseView: Bool
-	@State var overrideChain: ExerciseOverrideChain
+	@State var overrideChain: OldExerciseOverrideChain
 	@State var showAlert: Bool = false
 	
     var body: some View {

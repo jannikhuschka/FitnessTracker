@@ -9,8 +9,8 @@ import SwiftUI
 import Charts
 
 struct ExerciseChart: View {
-	var exDef: ExerciseDefinition
-	var sessions: [TrainingSession]
+	var exDef: OldExerciseDefinition
+	var sessions: [OldTrainingSession]
 	
 	var body: some View {
 		Chart {
@@ -58,5 +58,5 @@ struct ExerciseChart: View {
 }
 
 #Preview {
-	ExerciseChart(exDef: .sample1, sessions: [TrainingSession.sample1, TrainingSession.sample2])
+	ExerciseChart(exDef: .sample1, sessions: [OldTrainingSession.sample1, OldTrainingSession.sample2])
 }

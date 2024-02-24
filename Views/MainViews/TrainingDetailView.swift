@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct TrainingDetailView: View {
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	//	@State private var trainingBackup = Training.empty
-	@State var editingTraining: Training = .empty
+	@State var editingTraining: OldTraining = .empty
 	@State private var isPresentingEditView = false
 	@State private var exercisesExpanded: Bool = false
 	

@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct FitnessTrackerApp: App {
-	@StateObject private var store = TrainingStore()
+	@StateObject private var store = OldTrainingStore()
 	@State private var errorWrapper: ErrorWrapper?
 	
 	var body: some Scene {
@@ -26,7 +26,7 @@ struct FitnessTrackerApp: App {
 				}
 			}
 			.sheet(item: $errorWrapper) {
-				store.trainings = Training.sampleData
+				store.trainings = OldTraining.sampleData
 			} content: { wrapper in
 				ErrorView(errorWrapper: wrapper)
 			}

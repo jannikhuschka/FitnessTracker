@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct UpdateTargetsView: View {
-	@Binding var training: Training
-	@State var exercisesToUpdate: [ExerciseParamsUpdate]
-	@State var appliedChanges: [ExerciseParamsUpdate : [any ExerciseParamsChangeAction]] = [:]
+	@Binding var training: OldTraining
+	@State var exercisesToUpdate: [OldExerciseParamsUpdate]
+	@State var appliedChanges: [OldExerciseParamsUpdate : [any OldExerciseParamsChangeAction]] = [:]
 	
 	var body: some View {
 		List {
@@ -121,11 +121,11 @@ struct UpdateTargetsView: View {
 		}
 	}
 	
-	func overrideChainForExercise(_ exercise: Exercise) -> ExerciseOverrideChain {
+	func overrideChainForExercise(_ exercise: OldExercise) -> OldExerciseOverrideChain {
 		.init(root: training.defaults, overrides: [training.exercises.first(where: { $0.name == exercise.name })!.overrides])
 	}
 	
-	func toggleChange(_ paramsUpdate: ExerciseParamsUpdate, index: Int) {
+	func toggleChange(_ paramsUpdate: OldExerciseParamsUpdate, index: Int) {
 		let changeAction = paramsUpdate.proposedChanges[index]
 		if appliedChanges[paramsUpdate]?.contains(where: { $0.hashValue == changeAction.hashValue }) ?? false {
 			revertChange(paramsUpdate, index: index)
@@ -134,7 +134,7 @@ struct UpdateTargetsView: View {
 		}
 	}
 	
-	func acceptChange(_ paramsUpdate: ExerciseParamsUpdate, index: Int) {
+	func acceptChange(_ paramsUpdate: OldExerciseParamsUpdate, index: Int) {
 		let exerciseIndex = training.exercises.firstIndex(where: { $0.name == paramsUpdate.exerciseDefinition.name })!
 		let changeAction = paramsUpdate.proposedChanges[index]
 		if appliedChanges[paramsUpdate]?.contains(where: { $0.hashValue == changeAction.hashValue }) ?? false { return }
@@ -145,7 +145,7 @@ struct UpdateTargetsView: View {
 		}
 	}
 	
-	func revertChange(_ paramsUpdate: ExerciseParamsUpdate, index: Int) {
+	func revertChange(_ paramsUpdate: OldExerciseParamsUpdate, index: Int) {
 		let exerciseIndex = training.exercises.firstIndex(where: { $0.name == paramsUpdate.exerciseDefinition.name })!
 		let changeAction = paramsUpdate.proposedChanges[index]
 		if !(appliedChanges[paramsUpdate]?.contains(where: { $0.hashValue == changeAction.hashValue }) ?? false) { return }
@@ -155,13 +155,13 @@ struct UpdateTargetsView: View {
 		}
 	}
 	
-	func acceptAllChanges(_ paramsUpdate: ExerciseParamsUpdate) {
+	func acceptAllChanges(_ paramsUpdate: OldExerciseParamsUpdate) {
 		paramsUpdate.proposedChanges.indices.forEach { i in
 			acceptChange(paramsUpdate, index: i)
 		}
 	}
 	
-	func revertAllChanges(_ paramsUpdate: ExerciseParamsUpdate) {
+	func revertAllChanges(_ paramsUpdate: OldExerciseParamsUpdate) {
 		paramsUpdate.proposedChanges.indices.forEach { i in
 			revertChange(paramsUpdate, index: i)
 		}

@@ -2,8 +2,8 @@ import SwiftUI
 import Combine
 
 struct ExerciseEditView: View {
-	@Binding var exercise: ExerciseDefinition
-	@State var overrideChain: ExerciseOverrideChain
+	@Binding var exercise: OldExerciseDefinition
+	@State var overrideChain: OldExerciseOverrideChain
 	@State var isPresentingNewExerciseView: Bool = false
 	@State var exerciseType: Int = 0
 	@State var exerciseTypeOldValue: Int = 0
@@ -35,14 +35,14 @@ struct ExerciseEditView: View {
 								Button("Sets", systemImage: !exercise.isSuperset && !exercise.isSimple ? "checkmark" : "lineweight") {
 									print("Sets")
 									if(!exercise.isSimple && !exercise.isSuperset) { return }
-									exercise.setDefinitions = [SetDefinitionOverride()]
+									exercise.setDefinitions = [OldSetDefinitionOverride()]
 									exercise.supersetMembers = nil
 								}
 								Button("Superset", systemImage: exercise.isSuperset ? "checkmark" : "square.stack.3d.up") {
 									print("Superset")
 									if(exercise.isSuperset) { return }
 									exercise.setDefinitions = []
-									exercise.supersetMembers = [ExerciseDefinition(name: exercise.name, isSupersetMember: true)]
+									exercise.supersetMembers = [OldExerciseDefinition(name: exercise.name, isSupersetMember: true)]
 								}
 							}) {
 								Text(exercise.isSuperset ? "Superset" : (exercise.isSimple ? "Simple" : "Individual Sets"))
@@ -52,7 +52,7 @@ struct ExerciseEditView: View {
 						}
 					}
 					
-					if let paramBinding = Binding<ExerciseParamsOverride>($exercise.overrides) {
+					if let paramBinding = Binding<OldExerciseParamsOverride>($exercise.overrides) {
 						NavigationLink(destination: {
 							ExerciseParamsOverrideEditView(override: paramBinding, exercise: $exercise, overrideChain: fullOverrideChain)
 								.navigationTitle("\(exercise.name) Overrides")
@@ -73,7 +73,7 @@ struct ExerciseEditView: View {
 					}
 				}
 				
-				if let supersetMembers = Binding<[ExerciseDefinition]>($exercise.supersetMembers) {
+				if let supersetMembers = Binding<[OldExerciseDefinition]>($exercise.supersetMembers) {
 					//				if(exercise.isSuperset) {
 					Section(header: Text("Sub-Exercises")) {
 						if(supersetMembers.wrappedValue.isEmpty) {
@@ -144,7 +144,7 @@ struct ExerciseEditView: View {
 		}
 	}
 	
-	var fullOverrideChain: ExerciseOverrideChain { overrideChain.with(exercise.overrides) }
+	var fullOverrideChain: OldExerciseOverrideChain { overrideChain.with(exercise.overrides) }
 }
 
 #Preview {

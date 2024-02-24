@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SimpleExerciseRow: View {
-	var exercise: Exercise
+	var exercise: OldExercise
 	
     var body: some View {
 		HStack {

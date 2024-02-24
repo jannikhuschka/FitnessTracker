@@ -2,8 +2,8 @@ import SwiftUI
 import Combine
 
 struct SetDefinitionEditView: View {
-	@Binding var definition: SetDefinition
-	var possibleWeights: PossibleWeights
+	@Binding var definition: OldSetDefinition
+	var possibleWeights: OldPossibleWeights
 	
 	var body: some View {
 		IntPickerView(description: "Repetitions", image: "repeat", value: $definition.repCount, range: 1...30)
@@ -15,5 +15,5 @@ struct SetDefinitionEditView: View {
 }
 
 #Preview {
-	SetDefinitionEditView(definition: .constant(.init(repCount: 0, weightStage: 5, pause: PauseBehaviour())), possibleWeights: .sample1)
+	SetDefinitionEditView(definition: .constant(.init(repCount: 0, weightStage: 5, pause: OldPauseBehaviour())), possibleWeights: .sample1)
 }

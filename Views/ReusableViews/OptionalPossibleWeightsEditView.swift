@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct OptionalPossibleWeightsEditView: View {
-	@Binding var possibleWeights: PossibleWeights?
-	var overrideChain: ExerciseOverrideChain
+	@Binding var possibleWeights: OldPossibleWeights?
+	var overrideChain: OldExerciseOverrideChain
 	
 	var body: some View {
 		if let possibleWeightsBinding = getBinding($possibleWeights) {
@@ -18,7 +18,7 @@ struct OptionalPossibleWeightsEditView: View {
 			HStack {
 				Button("Weight Steps", systemImage: "plus.circle", action: {
 					withAnimation {
-						possibleWeights = PossibleWeights(baseWeight: 20, weightStep: 2.5)
+						possibleWeights = OldPossibleWeights(baseWeight: 20, weightStep: 2.5)
 					}
 				})
 				Spacer()
@@ -28,7 +28,7 @@ struct OptionalPossibleWeightsEditView: View {
 		}
 	}
 	
-	func getBinding(_ binding: Binding<PossibleWeights?>) -> Binding<PossibleWeights>? {
+	func getBinding(_ binding: Binding<OldPossibleWeights?>) -> Binding<OldPossibleWeights>? {
 		guard let wrappedValue = binding.wrappedValue else { return nil }
 		return Binding(
 			get: { wrappedValue },

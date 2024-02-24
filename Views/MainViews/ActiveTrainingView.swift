@@ -12,9 +12,9 @@ struct ActiveTrainingView: View {
 	@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 	@ObservedObject private var stopwatch = FitnessStopwatch.Instance
 	@State var showingAlert: Bool = false
-	@Binding var training: Training
+	@Binding var training: OldTraining
 	@State var liveActivity: Activity<FitnessWidgetAttributes>?
-	@State var tempUpcomingExercises: [ExerciseDefinition] = []
+	@State var tempUpcomingExercises: [OldExerciseDefinition] = []
 	@State var isPresentingReorderView: Bool = false
 	@State var isPresentingLastSession: Bool = false
 	

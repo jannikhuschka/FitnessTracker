@@ -1,10 +1,10 @@
 import Foundation
 
-struct ExerciseOverrideChain: HashEqCod {
-	var root: ExerciseParams
-	var overrides: [ExerciseParamsOverride] = []
+struct OldExerciseOverrideChain: HashEqCod {
+	var root: OldExerciseParams
+	var overrides: [OldExerciseParamsOverride] = []
 	
-	init(root: ExerciseParams, overrides: [ExerciseParamsOverride?] = []) {
+	init(root: OldExerciseParams, overrides: [OldExerciseParamsOverride?] = []) {
 		self.root = root
 		self.overrides = []
 		for override in overrides {
@@ -13,7 +13,7 @@ struct ExerciseOverrideChain: HashEqCod {
 		}
 	}
 
-	var possibleWeights: PossibleWeights {
+	var possibleWeights: OldPossibleWeights {
 		overrides.last(where: { $0.possibleWeights != nil })?.possibleWeights ?? root.possibleWeights
 	}
 	
@@ -21,7 +21,7 @@ struct ExerciseOverrideChain: HashEqCod {
 		overrides.last(where: { $0.setCount != nil })?.setCount ?? root.setCount
 	}
 	
-	var setDefinition: SetDefinition {
+	var setDefinition: OldSetDefinition {
 		let repCount = overrides.last(where: { $0.setDefinition.repCount != nil })?.setDefinition.repCount ?? root.setDefinition.repCount
 		let weightStage = overrides.last(where: { $0.setDefinition.weightStage != nil })?.setDefinition.weightStage ?? root.setDefinition.weightStage
 		let pause = overrides.last(where: { $0.setDefinition.pause != nil })?.setDefinition.pause ?? root.setDefinition.pause
@@ -64,22 +64,22 @@ struct ExerciseOverrideChain: HashEqCod {
 	}
 }
 
-extension ExerciseOverrideChain {
-	func with(_ override: ExerciseParamsOverride?) -> ExerciseOverrideChain {
-		var result = ExerciseOverrideChain(root: self.root, overrides: self.overrides)
+extension OldExerciseOverrideChain {
+	func with(_ override: OldExerciseParamsOverride?) -> OldExerciseOverrideChain {
+		var result = OldExerciseOverrideChain(root: self.root, overrides: self.overrides)
 		if let override {
 			result.overrides.append(override)
 		}
 		return result
 	}
 	
-	func withSet(_ set: SetDefinitionOverride) -> ExerciseOverrideChain {
-		var result = ExerciseOverrideChain(root: self.root, overrides: self.overrides)
+	func withSet(_ set: OldSetDefinitionOverride) -> OldExerciseOverrideChain {
+		var result = OldExerciseOverrideChain(root: self.root, overrides: self.overrides)
 		result.overrides.append(.init(setDefinition: set))
 		return result
 	}
 }
 
-extension ExerciseOverrideChain {
-	public static var sample: ExerciseOverrideChain { .init(root: .sample) }
+extension OldExerciseOverrideChain {
+	public static var sample: OldExerciseOverrideChain { .init(root: .sample) }
 }

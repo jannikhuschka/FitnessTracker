@@ -1,6 +1,6 @@
 import Foundation
 
-protocol ExerciseParamsChangeAction: Hashable, Equatable {
+protocol OldExerciseParamsChangeAction: Hashable, Equatable {
 	var changeType: ExerciseParamsUpdateType { get }
 	var subExercise: String? { get }
 	var setNumber: Int? { get }
@@ -9,11 +9,11 @@ protocol ExerciseParamsChangeAction: Hashable, Equatable {
 	var formattedValueBefore: String { get }
 	var formattedValueAfter: String { get }
 	var executed: Bool { get set }
-	func apply(_ exerciseDefinition: ExerciseDefinition) -> ExerciseDefinition
-	func revert(_ exerciseDefinition: ExerciseDefinition) -> ExerciseDefinition
+	func apply(_ exerciseDefinition: OldExerciseDefinition) -> OldExerciseDefinition
+	func revert(_ exerciseDefinition: OldExerciseDefinition) -> OldExerciseDefinition
 }
 
-extension ExerciseParamsChangeAction {
+extension OldExerciseParamsChangeAction {
 	var description: String {
 		var result = "Entire Exercise"
 		if let subExercise, let setNumber {

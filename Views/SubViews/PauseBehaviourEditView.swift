@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PauseBehaviourEditView: View {
-	@Binding var pause: PauseBehaviour
+	@Binding var pause: OldPauseBehaviour
 	
     var body: some View {
 		VStack {
@@ -17,8 +17,8 @@ struct PauseBehaviourEditView: View {
 				Spacer()
 				Menu {
 					Picker(selection: $pause.mode, label: EmptyView()) {
-						ForEach(PauseMode.allCases, id: \.self) { mode in
-							Label(mode.rawValue, systemImage: PauseMode.symbol(mode: mode))
+						ForEach(OldPauseMode.allCases, id: \.self) { mode in
+							Label(mode.rawValue, systemImage: OldPauseMode.symbol(mode: mode))
 								.tag(mode)
 						}
 					}

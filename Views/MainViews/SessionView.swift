@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SessionView: View {
-	@State var session: TrainingSession
-	@State var sessions: [TrainingSession]?
+	@State var session: OldTrainingSession
+	@State var sessions: [OldTrainingSession]?
 	
 	var body: some View {
 		NavigationStack {

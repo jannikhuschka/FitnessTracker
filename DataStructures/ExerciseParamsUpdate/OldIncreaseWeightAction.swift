@@ -1,6 +1,6 @@
 import Foundation
 
-struct IncreaseWeightAction: ExerciseParamsChangeAction, Hashable, Equatable {
+struct OldIncreaseWeightAction: OldExerciseParamsChangeAction, Hashable, Equatable {
 	public var changeType: ExerciseParamsUpdateType = .increaseWeight
 	public var subExercise: String? = nil
 	public var setNumber: Int? = nil
@@ -9,7 +9,7 @@ struct IncreaseWeightAction: ExerciseParamsChangeAction, Hashable, Equatable {
 	public var formattedValueBefore: String = ""
 	public var formattedValueAfter: String = ""
 	public var executed: Bool = false
-	public func apply(_ exerciseDefinition: ExerciseDefinition) -> ExerciseDefinition {
+	public func apply(_ exerciseDefinition: OldExerciseDefinition) -> OldExerciseDefinition {
 		var changedDefinition = exerciseDefinition
 		
 		if let subExercise {
@@ -37,7 +37,7 @@ struct IncreaseWeightAction: ExerciseParamsChangeAction, Hashable, Equatable {
 		return changedDefinition
 	}
 	
-	public func revert(_ exerciseDefinition: ExerciseDefinition) -> ExerciseDefinition {
+	public func revert(_ exerciseDefinition: OldExerciseDefinition) -> OldExerciseDefinition {
 		var changedDefinition = exerciseDefinition
 		
 		if let subExercise {

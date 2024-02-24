@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExerciseListItem: View {
-	var exercise: ExerciseDefinition
-	var overrideChain: ExerciseOverrideChain
+	var exercise: OldExerciseDefinition
+	var overrideChain: OldExerciseOverrideChain
 	var nameOverride: String? = nil
 	
     var body: some View {
@@ -60,7 +60,7 @@ struct ExerciseListItem: View {
 		return sets
 	}
 	
-	var fullOverrideChain: ExerciseOverrideChain {
+	var fullOverrideChain: OldExerciseOverrideChain {
 		overrideChain.with(exercise.overrides)
 	}
 }

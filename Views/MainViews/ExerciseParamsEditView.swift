@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExerciseParamsEditView: View {
-	@Binding var params: ExerciseParams
+	@Binding var params: OldExerciseParams
 	
     var body: some View {
 		Form {
