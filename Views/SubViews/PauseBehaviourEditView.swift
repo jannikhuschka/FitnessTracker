@@ -17,8 +17,8 @@ struct PauseBehaviourEditView: View {
 				Spacer()
 				Menu {
 					Picker(selection: $pause.mode, label: EmptyView()) {
-						ForEach(OldPauseMode.allCases, id: \.self) { mode in
-							Label(mode.rawValue, systemImage: OldPauseMode.symbol(mode: mode))
+						ForEach(PauseMode.allCases, id: \.self) { mode in
+							Label(mode.rawValue, systemImage: PauseMode.symbol(mode: mode))
 								.tag(mode)
 						}
 					}

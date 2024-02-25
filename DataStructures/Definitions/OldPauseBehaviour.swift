@@ -1,6 +1,6 @@
 import Foundation
 
 struct OldPauseBehaviour : HashEqCod {
-	var mode: OldPauseMode = .fixedPauseDuration
+	var mode: PauseMode = .fixedPauseDuration
 	var duration: Int = 60
 }

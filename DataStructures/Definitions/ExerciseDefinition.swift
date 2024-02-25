@@ -1,9 +1,11 @@
 import Foundation
+import SwiftData
 
-struct OldExerciseDefinition: HashEqCod, Identifiable {
+@Model
+class ExerciseDefinition {
 	var id: UUID
 	var name: String
-	func setCount(overrideChain: OldExerciseOverrideChain) -> Int {
+	func setCount(overrideChain: ExerciseOverrideChain) -> Int {
 		if(isSuperset) {
 			return supersetMembers!.reduce(0, { $0 + $1.setCount(overrideChain: overrideChain.with($1.overrides)) })
 		}
@@ -12,12 +14,12 @@ struct OldExerciseDefinition: HashEqCod, Identifiable {
 		}
 		return setDefinitions.count
 	}
-	var overrides: OldExerciseParamsOverride?
+	var overrides: ExerciseParamsOverride?
 	
-	var setDefinitions: [OldSetDefinitionOverride] = []
+	var setDefinitions: [SetDefinitionOverride] = []
 	var isSimple: Bool { setDefinitions.isEmpty && !isSuperset }
 	
-	var supersetMembers: [OldExerciseDefinition]? = nil
+	var supersetMembers: [ExerciseDefinition]? = nil
 	var isSuperset: Bool { !isSupersetMember && supersetMembers != nil }
 	let isSupersetMember: Bool
 	
@@ -28,7 +30,7 @@ struct OldExerciseDefinition: HashEqCod, Identifiable {
 		self.isSupersetMember = isSupersetMember
 	}
 	
-	init(id: UUID = UUID(), name: String, overrides: OldExerciseParamsOverride? = nil, isSupersetMember: Bool = false) {
+	init(id: UUID = UUID(), name: String, overrides: ExerciseParamsOverride? = nil, isSupersetMember: Bool = false) {
 		self.id = id
 		self.name = name
 		self.overrides = overrides
@@ -36,18 +38,18 @@ struct OldExerciseDefinition: HashEqCod, Identifiable {
 	}
 }
 
-extension OldExerciseDefinition {
-	static func forTraining(training: OldTraining, name: String, isSuperset: Bool = false) -> OldExerciseDefinition {
+extension ExerciseDefinition {
+	static func forTraining(training: Training, name: String, isSuperset: Bool = false) -> ExerciseDefinition {
 		let defaults = training.defaults
 		return .init(name: name, baseWeight: defaults.possibleWeights.baseWeight, weightStep: defaults.possibleWeights.weightStep, setCount: 3, repCount: defaults.setDefinition.repCount, weightStage: defaults.setDefinition.weightStage)
 	}
 	
-	func setDefinition(number: Int, overrideChain: OldExerciseOverrideChain) -> OldSetDefinition {
+	func setDefinition(number: Int, overrideChain: ExerciseOverrideChain) -> SetDefinition {
 		if(isSimple || number >= setCount(overrideChain: overrideChain)) { return overrideChain.setDefinition }
 		return overrideChain.withSet(setDefinitions[number]).setDefinition
 	}
 	
-	func isCompletedBy(_ exercise: OldExercise?, overrideChain: OldExerciseOverrideChain) -> Bool {
+	func isCompletedBy(_ exercise: Exercise?, overrideChain: ExerciseOverrideChain) -> Bool {
 		guard let exercise else { return false }
 		if(isSimple) {
 			return setCount(overrideChain: overrideChain) <= exercise.sets.count
@@ -66,31 +68,31 @@ extension OldExerciseDefinition {
 		return "lineweight"
 	}
 	
-	public func maxSetCount(sessions: [OldTrainingSession]) -> Int {
+	public func maxSetCount(sessions: [TrainingSession]) -> Int {
 		sessions.map({
 			$0.getExerciseFrom(self)?.sets.count ?? 0
 		}).max() ?? 0
 	}
 }
 
-extension [OldExerciseDefinition] {
-	func completedBy(_ exercises: [OldExercise], overrideChain: OldExerciseOverrideChain) -> [OldExerciseDefinition] {
+extension [ExerciseDefinition] {
+	func completedBy(_ exercises: [Exercise], overrideChain: ExerciseOverrideChain) -> [ExerciseDefinition] {
 		return self.filter({ def in
 			def.isCompletedBy(exercises.first(where: { $0.name == def.name }), overrideChain: overrideChain.with(def.overrides)) })
 	}
 	
-	func notCompletedBy(_ exercises: [OldExercise], overrideChain: OldExerciseOverrideChain) -> [OldExerciseDefinition] {
+	func notCompletedBy(_ exercises: [Exercise], overrideChain: ExerciseOverrideChain) -> [ExerciseDefinition] {
 		return self.filter({ def in
 			!def.isCompletedBy(exercises.first(where: { $0.name == def.name }), overrideChain: overrideChain.with(def.overrides)) })
 	}
 }
 
-extension OldExerciseDefinition {
-	public static var empty: OldExerciseDefinition { .init(name: "") }
+extension ExerciseDefinition {
+	public static var empty: ExerciseDefinition { .init(name: "") }
 	
-	public static var sample1: OldExerciseDefinition { .init(name: "Brustpresse", baseWeight: 0, weightStep: 5, setCount: 3, repCount: 15, weightStage: 5) }
-	public static var sample2: OldExerciseDefinition { .init(name: "Butterfly", baseWeight: 0, weightStep: 5, setCount: 4, repCount: 2, weightStage: 5) }
-	public static var sample3: OldExerciseDefinition { .init(name: "Beinpresse", baseWeight: 0, weightStep: 5, setCount: 5, repCount: 8, weightStage: 5) }
-	public static var sample4: OldExerciseDefinition { .init(name: "Klimmzüge", baseWeight: 0, weightStep: 5, setCount: 2, repCount: 12, weightStage: 5) }
-	public static var sample5: OldExerciseDefinition { .init(name: "Dips", baseWeight: 0, weightStep: 5, setCount: 1, repCount: 6, weightStage: 5) }
+	public static var sample1: ExerciseDefinition { .init(name: "Brustpresse", baseWeight: 0, weightStep: 5, setCount: 3, repCount: 15, weightStage: 5) }
+	public static var sample2: ExerciseDefinition { .init(name: "Butterfly", baseWeight: 0, weightStep: 5, setCount: 4, repCount: 2, weightStage: 5) }
+	public static var sample3: ExerciseDefinition { .init(name: "Beinpresse", baseWeight: 0, weightStep: 5, setCount: 5, repCount: 8, weightStage: 5) }
+	public static var sample4: ExerciseDefinition { .init(name: "Klimmzüge", baseWeight: 0, weightStep: 5, setCount: 2, repCount: 12, weightStage: 5) }
+	public static var sample5: ExerciseDefinition { .init(name: "Dips", baseWeight: 0, weightStep: 5, setCount: 1, repCount: 6, weightStage: 5) }
 }

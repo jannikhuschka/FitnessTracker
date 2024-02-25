@@ -1,12 +1,12 @@
 import Foundation
 
-enum OldPauseMode: String, CaseIterable, HashEqCod {
+enum PauseMode: String, CaseIterable, HashEqCod {
 	case fixedPauseDuration = "Pause Duration"
 	case fixedSetDuration = "Set Duration"
 	case infinitePause = "Infinite Pause"
 }
 
-extension OldPauseMode {
+extension PauseMode {
 	var shortened: String {
 		switch(self) {
 		case .fixedPauseDuration: return "Pause"
@@ -15,7 +15,7 @@ extension OldPauseMode {
 		}
 	}
 	
-	static func symbol(mode: OldPauseMode) -> String {
+	static func symbol(mode: PauseMode) -> String {
 		switch(mode) {
 		case(.fixedPauseDuration): return "pause"
 		case(.fixedSetDuration): return "playpause"

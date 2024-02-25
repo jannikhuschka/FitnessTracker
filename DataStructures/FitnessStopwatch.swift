@@ -41,7 +41,7 @@ final class FitnessStopwatch: ObservableObject {
 	@Published var lastSetCompleteDate: Date = Date()
 	@Published var totalPauseTime: TimeInterval = .zero
 	@Published var pauseDate: Date?
-	@Published var pauseMode: OldPauseMode = .fixedPauseDuration
+	@Published var pauseMode: PauseMode = .fixedPauseDuration
 	private var pauseModeDuration: Double { Double(currentSetDef.pause.duration) }
 	@Published var endOfPauseDate: Date = Date()
 	private var wakeScreenTask: Task<Void, Error> = Task { return }
