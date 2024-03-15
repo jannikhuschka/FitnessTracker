@@ -7,4 +7,8 @@ struct OldPossibleWeights : HashEqCod {
 
 extension OldPossibleWeights {
 	public static var sample1: OldPossibleWeights { .init(baseWeight: 0, weightStep: 5) }
+	
+	public func toPossibleWeights() -> PossibleWeights {
+		.init(baseWeight: baseWeight, weightStep: weightStep)
+	}
 }

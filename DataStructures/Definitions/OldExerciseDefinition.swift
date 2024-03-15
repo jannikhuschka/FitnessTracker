@@ -71,6 +71,10 @@ extension OldExerciseDefinition {
 			$0.getExerciseFrom(self)?.sets.count ?? 0
 		}).max() ?? 0
 	}
+	
+	public func toExerciseDefinition() -> ExerciseDefinition {
+		.init(name: name, overrides: overrides?.toExerciseParamsOverride(), isSupersetMember: isSupersetMember)
+	}
 }
 
 extension [OldExerciseDefinition] {

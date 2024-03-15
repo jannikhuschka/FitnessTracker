@@ -1,40 +1,42 @@
 import Foundation
 import SwiftData
 
-@Model
-class ExerciseDefinition {
-	var id: UUID
-	var name: String
-	func setCount(overrideChain: ExerciseOverrideChain) -> Int {
-		if(isSuperset) {
-			return supersetMembers!.reduce(0, { $0 + $1.setCount(overrideChain: overrideChain.with($1.overrides)) })
+extension DataSchemaV1 {
+	@Model
+	class ExerciseDefinition {
+		var id: UUID
+		var name: String
+		func setCount(overrideChain: ExerciseOverrideChain) -> Int {
+			if(isSuperset) {
+				return supersetMembers!.reduce(0, { $0 + $1.setCount(overrideChain: overrideChain.with($1.overrides)) })
+			}
+			if(isSimple) {
+				return overrideChain.setCount
+			}
+			return setDefinitions.count
 		}
-		if(isSimple) {
-			return overrideChain.setCount
+		var overrides: ExerciseParamsOverride?
+		
+		var setDefinitions: [SetDefinitionOverride] = []
+		var isSimple: Bool { setDefinitions.isEmpty && !isSuperset }
+		
+		var supersetMembers: [ExerciseDefinition]? = nil
+		var isSuperset: Bool { !isSupersetMember && supersetMembers != nil }
+		let isSupersetMember: Bool
+		
+		init(id: UUID = UUID(), name: String, baseWeight: Double, weightStep: Double, setCount: Int, repCount: Int, weightStage: Int, pauseMode: PauseMode = .fixedPauseDuration, pauseModeDuration: Int = 60, isSupersetMember: Bool = false) {
+			self.id = id
+			self.name = name
+			self.overrides = .init(possibleWeights: .init(baseWeight: baseWeight, weightStep: weightStep), setCount: setCount, setDefinition: .init(repCount: repCount, weightStage: weightStage, pause: .init(mode: pauseMode, duration: pauseModeDuration)))
+			self.isSupersetMember = isSupersetMember
 		}
-		return setDefinitions.count
-	}
-	var overrides: ExerciseParamsOverride?
-	
-	var setDefinitions: [SetDefinitionOverride] = []
-	var isSimple: Bool { setDefinitions.isEmpty && !isSuperset }
-	
-	var supersetMembers: [ExerciseDefinition]? = nil
-	var isSuperset: Bool { !isSupersetMember && supersetMembers != nil }
-	let isSupersetMember: Bool
-	
-	init(id: UUID = UUID(), name: String, baseWeight: Double, weightStep: Double, setCount: Int, repCount: Int, weightStage: Int, pauseMode: PauseMode = .fixedPauseDuration, pauseModeDuration: Int = 60, isSupersetMember: Bool = false) {
-		self.id = id
-		self.name = name
-		self.overrides = .init(possibleWeights: .init(baseWeight: baseWeight, weightStep: weightStep), setCount: setCount, setDefinition: .init(repCount: repCount, weightStage: weightStage, pause: .init(mode: pauseMode, duration: pauseModeDuration)))
-		self.isSupersetMember = isSupersetMember
-	}
-	
-	init(id: UUID = UUID(), name: String, overrides: ExerciseParamsOverride? = nil, isSupersetMember: Bool = false) {
-		self.id = id
-		self.name = name
-		self.overrides = overrides
-		self.isSupersetMember = isSupersetMember
+		
+		init(id: UUID = UUID(), name: String, overrides: ExerciseParamsOverride? = nil, isSupersetMember: Bool = false) {
+			self.id = id
+			self.name = name
+			self.overrides = overrides
+			self.isSupersetMember = isSupersetMember
+		}
 	}
 }
 

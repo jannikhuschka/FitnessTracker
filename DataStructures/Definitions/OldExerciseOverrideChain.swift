@@ -78,6 +78,13 @@ extension OldExerciseOverrideChain {
 		result.overrides.append(.init(setDefinition: set))
 		return result
 	}
+	
+	public func toExerciseOverrideChain() -> ExerciseOverrideChain {
+		.init(
+			root: root.toExerciseParams(),
+			overrides: overrides.map { $0.toExerciseParamsOverride() }
+		)
+	}
 }
 
 extension OldExerciseOverrideChain {

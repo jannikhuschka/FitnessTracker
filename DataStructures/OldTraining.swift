@@ -34,6 +34,10 @@ extension OldTraining {
 		if(exercises.isEmpty) { return "Please add at least one exercise to the training." }
 		return "OK"
 	}
+	
+	public func toTraining() -> Training {
+		Training(name: name, defaults: defaults.toExerciseParams(), exercises: exercises.map({ $0.toExerciseDefinition() }), sessions: sessions.map({ $0.toTrainingSession() }))
+	}
 }
 
 extension OldTraining {

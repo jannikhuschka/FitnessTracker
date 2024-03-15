@@ -1,14 +1,16 @@
 import Foundation
 import SwiftData
 
-@Model
-class Set {
-	var reps: Int
-	var weight: Double
-	
-	init(reps: Int, weight: Double) {
-		self.reps = reps
-		self.weight = weight
+extension DataSchemaV1 {
+	@Model
+	class Set {
+		var reps: Int
+		var weight: Double
+		
+		init(reps: Int, weight: Double) {
+			self.reps = reps
+			self.weight = weight
+		}
 	}
 }
 

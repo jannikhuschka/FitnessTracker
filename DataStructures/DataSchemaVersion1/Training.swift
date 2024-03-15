@@ -1,20 +1,22 @@
 import Foundation
 import SwiftData
 
-@Model
-class Training {
-	var id: UUID
-	var name: String
-	var defaults: ExerciseParams
-	var exercises: [ExerciseDefinition]
-	var sessions: [TrainingSession]
-	
-	init(id: UUID = UUID(), name: String, defaults: ExerciseParams, exercises: [ExerciseDefinition] = [], sessions: [TrainingSession] = []) {
-		self.id = id
-		self.name = name
-		self.defaults = defaults
-		self.exercises = exercises
-		self.sessions = sessions
+extension DataSchemaV1 {
+	@Model
+	class Training {
+		var id: UUID
+		var name: String
+		@Relationship var defaults: ExerciseParams
+		@Relationship var exercises: [ExerciseDefinition]
+		@Relationship var sessions: [TrainingSession]
+		
+		init(id: UUID = UUID(), name: String, defaults: ExerciseParams, exercises: [ExerciseDefinition] = [], sessions: [TrainingSession] = []) {
+			self.id = id
+			self.name = name
+			self.defaults = defaults
+			self.exercises = exercises
+			self.sessions = sessions
+		}
 	}
 }
 

@@ -10,4 +10,8 @@ extension OldSetDefinitionOverride {
 	func weight(possibleWeights: OldPossibleWeights) -> Double {
 		possibleWeights.baseWeight + Double(weightStage ?? 187) * possibleWeights.weightStep
 	}
+	
+	public func toSetDefinitionOverride() -> SetDefinitionOverride {
+		.init(repCount: repCount, weightStage: weightStage, pause: pause?.toPauseBehaviour())
+	}
 }

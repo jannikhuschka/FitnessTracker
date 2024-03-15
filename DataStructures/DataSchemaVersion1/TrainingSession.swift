@@ -1,19 +1,29 @@
 import Foundation
 import SwiftData
 
-@Model
-class TrainingSession {
-	var trainingName: String
-	var number: Int
-	var date: Date
-	var duration: Duration?
-	var exercises: [Exercise]
-	
-	init(training: Training) {
-		self.trainingName = training.name
-		self.number = training.sessions.count + 1
-		self.date = Date()
-		self.exercises = []
+extension DataSchemaV1 {
+	@Model
+	class TrainingSession {
+		var trainingName: String
+		var number: Int
+		var date: Date
+		var duration: Duration?
+		var exercises: [Exercise]
+		
+		init(training: Training) {
+			self.trainingName = training.name
+			self.number = training.sessions.count + 1
+			self.date = Date()
+			self.exercises = []
+		}
+		
+		init(trainingName: String, number: Int, date: Date, duration: Duration? = nil, exercises: [Exercise]) {
+			self.trainingName = trainingName
+			self.number = number
+			self.date = date
+			self.duration = duration
+			self.exercises = exercises
+		}
 	}
 }
 

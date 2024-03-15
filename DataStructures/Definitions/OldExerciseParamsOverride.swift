@@ -16,6 +16,14 @@ extension OldExerciseParamsOverride {
 		let arr: [Any?] = [possibleWeights, setCount, setDefinition.repCount, setDefinition.weightStage, setDefinition.pause]
 		return arr.reduce(0, { $0 + ($1 != nil ? 1 : 0) })
 	}
+	
+	public func toExerciseParamsOverride() -> ExerciseParamsOverride {
+		.init(
+			possibleWeights: possibleWeights?.toPossibleWeights(),
+			setCount: setCount,
+			setDefinition: setDefinition.toSetDefinitionOverride()
+		)
+	}
 }
 
 extension OldExerciseParamsOverride {

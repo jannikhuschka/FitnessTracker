@@ -1,16 +1,18 @@
 import Foundation
 import SwiftData
 
-@Model
-class ExerciseParamsOverride {
-	var possibleWeights: PossibleWeights?
-	var setCount: Int?
-	var setDefinition: SetDefinitionOverride
-	
-	init(possibleWeights: PossibleWeights? = nil, setCount: Int? = nil, setDefinition: SetDefinitionOverride = .init()) {
-		self.possibleWeights = possibleWeights
-		self.setCount = setCount
-		self.setDefinition = setDefinition
+extension DataSchemaV1 {
+	@Model
+	class ExerciseParamsOverride {
+		@Relationship var possibleWeights: PossibleWeights?
+		var setCount: Int?
+		@Relationship var setDefinition: SetDefinitionOverride
+		
+		init(possibleWeights: PossibleWeights? = nil, setCount: Int? = nil, setDefinition: SetDefinitionOverride = .init()) {
+			self.possibleWeights = possibleWeights
+			self.setCount = setCount
+			self.setDefinition = setDefinition
+		}
 	}
 }
 

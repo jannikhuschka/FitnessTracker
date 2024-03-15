@@ -1,17 +1,19 @@
 import Foundation
 import SwiftData
 
-@Model
-class Exercise {
-	var name: String
-	@Relationship var sets: [Set] = []
-	@Relationship var subExercises: [Exercise] = []
-	var isSuperset: Bool { !subExercises.isEmpty }
-	
-	init(name: String, sets: [Set] = [], subExercises: [Exercise] = []) {
-		self.name = name
-		self.sets = sets
-		self.subExercises = subExercises
+extension DataSchemaV1 {
+	@Model
+	class Exercise {
+		var name: String
+		@Relationship var sets: [Set] = []
+		@Relationship var subExercises: [Exercise] = []
+		var isSuperset: Bool { !subExercises.isEmpty }
+		
+		init(name: String, sets: [Set] = [], subExercises: [Exercise] = []) {
+			self.name = name
+			self.sets = sets
+			self.subExercises = subExercises
+		}
 	}
 }
 
@@ -69,27 +71,27 @@ extension Exercise {
 	}
 	
 	public static var sample1: Exercise {
-		var result = Exercise(name: "Brustpresse")
+		let result = Exercise(name: "Brustpresse")
 		result.sets = [.sample1, .sample2, .sample3]
 		return result
 	}
 	public static var sample2: Exercise {
-		var result = Exercise(name: "Butterfly")
+		let result = Exercise(name: "Butterfly")
 		result.sets = [.sample2, .sample4, .sample5, .sample1, .sample3]
 		return result
 	}
 	public static var sample3: Exercise {
-		var result = Exercise(name: "Beinpresse")
+		let result = Exercise(name: "Beinpresse")
 		result.sets = [.sample3, .sample5]
 		return result
 	}
 	public static var sample4: Exercise {
-		var result = Exercise(name: "Klimmzüge")
+		let result = Exercise(name: "Klimmzüge")
 		result.sets = [.sample5]
 		return result
 	}
 	public static var sample5: Exercise {
-		var result = Exercise(name: "Dips")
+		let result = Exercise(name: "Dips")
 		result.sets = [.sample4, .sample3, .sample2, .sample4]
 		return result
 	}

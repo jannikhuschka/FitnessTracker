@@ -10,4 +10,8 @@ extension OldSetDefinition {
 	func weight(possibleWeights: OldPossibleWeights) -> Double {
 		possibleWeights.baseWeight + Double(weightStage) * possibleWeights.weightStep
 	}
+	
+	public func toSetDefinition() -> SetDefinition {
+		.init(repCount: repCount, weightStage: weightStage, pause: pause.toPauseBehaviour())
+	}
 }

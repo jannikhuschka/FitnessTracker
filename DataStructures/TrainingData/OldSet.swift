@@ -6,6 +6,12 @@ struct OldSet : HashEqCod, Sendable {
 }
 
 extension OldSet {
+	public func toSet() -> Set {
+		.init(reps: reps, weight: weight)
+	}
+}
+
+extension OldSet {
 	public static var empty: OldSet { .init(reps: 0, weight: 0) }
 	public static var sample1: OldSet { .init(reps: 1, weight: 100) }
 	public static var sample2: OldSet { .init(reps: 5, weight: 70) }

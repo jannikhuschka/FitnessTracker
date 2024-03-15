@@ -47,6 +47,10 @@ extension OldExercise {
 		}
 		return false
 	}
+	
+	public func toExercise() -> Exercise {
+		.init(name: name, sets: sets.map({ $0.toSet() }), subExercises: subExercises.map({ $0.toExercise() }))
+	}
 }
 
 extension [OldExercise] {

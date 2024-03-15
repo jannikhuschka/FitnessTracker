@@ -44,6 +44,10 @@ extension OldTrainingSession {
 			tmp + ex.totalMovedWeight
 		})
 	}
+	
+	public func toTrainingSession() -> TrainingSession {
+		.init(trainingName: trainingName, number: number, date: date, duration: duration, exercises: exercises.map({ $0.toExercise() }))
+	}
 }
 
 extension OldTrainingSession {
